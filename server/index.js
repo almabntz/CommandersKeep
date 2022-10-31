@@ -9,15 +9,10 @@ const PORT = 8080;
 //config cors middleware
 app.use(cors());
 
-//end point for route
-app.get('/', (request, response) => {
-    response.json({ info: 'hello from my backend'})
-});
-
 //GET request for MTG api
 //API will fetch 100 cards as a default
-app.get("/", cors(), async (req,res) => {
-    const url = "https://api.magicthegathering.io/v1/cards";
+app.get("api/cards", cors(), async (req,res) => {
+     const url = "https://api.magicthegathering.io/v1/cards";
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -26,15 +21,16 @@ app.get("/", cors(), async (req,res) => {
         //error response
         res.send(data);
     } catch (err) {
-        console.error("Fetch error: ", err);
+        console.error("status:", err);
     }
 });
 
+//end point for route
+app.get('/', (request, response) => {
+    response.json({ info: 'hello from my backend'})
+});
 
 
-
-
-
-
+ // const url = "https://api.scryfall.com/catalog/card-names";
 
 app.listen(PORT, () => console.log(`Hello from backend! server is running on port ${PORT}`));
