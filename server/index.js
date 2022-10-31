@@ -15,6 +15,7 @@ app.get('/', (request, response) => {
 });
 
 //GET request for MTG api
+//API will fetch 100 cards as a default
 app.get("/", cors(), async (req,res) => {
     const url = "https://api.magicthegathering.io/v1/cards";
     try {
