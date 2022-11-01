@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Collection from './myCollection';
+// Search bar
+import SearchBar from '../components/searchBar'
+import CardData from "../components/default-cards.json"
 
 const Archive = () => {
     //logic goes here
-const [archiveCards, setArchiveCards] = useState([]);
+// const [filteredData, setFilteredData] = useState([]);
 
 
 //fetch from API 
@@ -14,6 +16,9 @@ const [archiveCards, setArchiveCards] = useState([]);
 
     return (
         <div>
+              <div className= "searchBar">
+        <SearchBar placeholder= "Enter a Card Name..." data= {CardData} />
+        </div>
             <h1>This where full list of cards can be browsed</h1>
         </div>
     )

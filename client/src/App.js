@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 
 //Nav Bar Code
@@ -8,14 +8,15 @@ import NavBar from './components/navBar';
 import Collection from './pages/myCollection';
 import Decks from './pages/myDecks';
 import Archive from './pages/archive';
-
+// Search bar
+//import SearchBar from './components/searchBar'
+//import CardData from "./components/default-cards.json"
 
 function App() {
   const [view, setView] = useState("myCollection")
   return (
     //Nav Bar Code
     <div className="App">
-     
       <NavBar setView={setView}/>
       {view === 'myCollection' && <Collection/>}
       {view === 'myDecks' && <Decks/>}

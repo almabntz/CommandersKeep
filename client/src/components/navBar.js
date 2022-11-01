@@ -1,7 +1,8 @@
 import React from "react";
 import logo from "./logo.jpg"
 // Search bar
-import SearchBar from "./searchBar";
+//import SearchBar from "./searchBar";
+//import CardData from "./default-cards.json"
 
 const NavBar = ({setView}) => {
     //logic goes here
@@ -23,11 +24,6 @@ const NavBar = ({setView}) => {
           <div className="logo">
           <img className="nav-img" src={logo}/>
           <h1>Commanders Keep</h1>
-          <div className= "searchBar">
-        <SearchBar placeholder= "Enter a Card Name..."/>
-        </div>
-
-
           </div>
         
           <div className="navbar-btn" onClick={() => setView("myCollection")}>
