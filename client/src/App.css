@@ -54,6 +54,6 @@ viewport-fit:inherit;
 }
 
 
-/* .searchBar {
-float: right;
-} */
+.searchBar {
+float: center;
+}
