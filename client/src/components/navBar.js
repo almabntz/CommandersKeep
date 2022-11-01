@@ -24,7 +24,7 @@ const NavBar = ({setView}) => {
           <img className="nav-img" src={logo}/>
           <h1>Commanders Keep</h1>
           <div className= "searchBar">
-        <SearchBar />
+        <SearchBar placeholder= "Enter a Card Name..."/>
         </div>
 
 
