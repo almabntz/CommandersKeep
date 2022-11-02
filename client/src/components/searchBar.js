@@ -15,7 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
  *   
  * 
  */
-function SearchBar({placeholder, data}) {
+function SearchBar({placeholder, data, searchTerm, setSearchTerm, onChange}) {
     //use states and logic 
     const [filteredData, setFilteredData] = useState([]); //state for data from JSON files
     const [wordEntered, setWordEntered] = useState("");// state for term entered into search bar
@@ -24,6 +24,9 @@ function SearchBar({placeholder, data}) {
     const handleFilter = (e) => {
         const searchWord = e.target.value
         setWordEntered(searchWord);
+
+        onChange(searchWord);
+      //  console.log('calling the onchange prop in search bar, which is handleClick from the parent')
         const newFilter = data.filter((value) =>{
             return value.name.toLowerCase().includes(searchWord.toLowerCase());
         });

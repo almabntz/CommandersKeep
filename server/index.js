@@ -13,7 +13,7 @@ app.use(cors());
 //GET request for MTG api
 //API will fetch 100 cards as a default
 app.get("api/cards", cors(), async (req,res) => {
-     const url = "https://api.magicthegathering.io/v1/cards?name=${}";
+     const url = `https://api.magicthegathering.io/v1/cards?name=${"vampire"}`;
     try {
         const response = await fetch(url);
         const data = await response.json();
