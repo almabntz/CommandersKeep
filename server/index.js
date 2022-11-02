@@ -8,11 +8,12 @@ const PORT = 8080;
 
 //config cors middleware
 app.use(cors());
+// `https://api.magicthegathering.io/v1/cards?name=${searchTerm}` <--- searchTerm is passed from api, probs like req.searchTerm or something
 
 //GET request for MTG api
 //API will fetch 100 cards as a default
 app.get("api/cards", cors(), async (req,res) => {
-     const url = "https://api.magicthegathering.io/v1/cards";
+     const url = "https://api.magicthegathering.io/v1/cards?name=${}";
     try {
         const response = await fetch(url);
         const data = await response.json();
