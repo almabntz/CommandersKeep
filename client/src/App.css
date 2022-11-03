@@ -58,3 +58,7 @@ viewport-fit:inherit;
 float:right;
 place-items: center;
 }
+
+.display-card {
+  background-color: aqua;
+}
