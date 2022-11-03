@@ -1,68 +1,78 @@
-import React, { useEffect, useState } from 'react';
-// Search bar
-import SearchBar from '../components/searchBar'
-import CardData from "../components/default-cards2.json"
-import DisplayCard from '../components/displayCard';
+import React, { useEffect, useState } from "react";
+import SearchBar from "../components/searchBar";
+import DisplayCard from "../components/displayCard"; 
+//import CardData from "../components/default-cards2.json"
 
-//here i am passing use state from search bar as props
+/* 
+*                           Parent: Archive 
+*   Parent has access to these props placeholder, data, onChange, card
+*
+*    Child: SeachBar                     Child: DisplayCard
+*  onChange prop passed from parent   Card prop passed from parent
+*/
+
+
+
 const Archive = ({}) => {
-   const [filteredData, setFilteredData] = useState([])//use state for data i receive from search bar
-   const [ searchTerm, setSearchTerm] = useState("")
+  const [filteredAPIData, setfilteredAPIData] = useState([]); //useState for data receive from search bar
+  const [searchTerm, setSearchTerm] = useState(""); //useState for key search term
 
-//fetch from API 
-//GET request from backend, will bring data to front
-const getCardsFromAPI = async () => {
-    const response = await fetch(`https://api.magicthegathering.io/v1/cards?name=${"vampire"}`).catch(e=>{console.log(e, 'error from fetch')});
+  //fetch from API
+  //GET request from backend, will bring data to front
+  const getCardsFromAPI = async () => {
+    const response = await fetch(
+      `https://api.magicthegathering.io/v1/cards?name=${"vampire"}`
+    ).catch((e) => {
+      console.log(e, "error from fetch");
+    });
     const searchResults = await response.json();
-    console.log(searchResults.cards)
-    setFilteredData(searchResults.cards)
-};
-useEffect(() => {
-    getCardsFromAPI();
-}, []);
+    console.log(searchResults.cards);
+    setfilteredAPIData(searchResults.cards);
+  };
+  
+  //logic that will send data to child, searchbar
+  const handleClick = (word) => {
+    //search term from search bar onchange
+    console.log(word);
+    //updating use state to users selected search word
+    setSearchTerm(word);
+  };
 
-//logic that will send data to child, searchbar
-const handleClickV2 = (word) =>{
-    console.log(word, 'search term from search bar onchange')
-    setSearchTerm(word)
-}
-
-console.log(filteredData, 'filtered data')
-useEffect(()=>{
-    if (searchTerm){
-    fetch(`https://api.magicthegathering.io/v1/cards?name=${searchTerm}`).then(res=>{
-       return res.json()})
-        .then(result=>{    
-            console.log(searchTerm, result, 'maybe these are filterd by search term I hope!! ');
-            setFilteredData(result.cards)
+  console.log(filteredAPIData);
+  useEffect(() => {
+    if (searchTerm) {
+      fetch(`https://api.magicthegathering.io/v1/cards?name=${searchTerm}`)
+        .then((res) => {
+          return res.json();
         })
-    .catch(e=>{console.log(e, 'error from fetch')});
-    }
-}, [searchTerm])
+        .then((result) => {
+          console.log(
+            searchTerm,
+            result,
 
-    return (
-        <div>
-              <div className= "searchBar">
-        <SearchBar 
-        placeholder= "Enter a Card Name..." 
-        data={filteredData} 
-        onChange={handleClickV2}//sends data to the child component Searchbar 
+          );
+          setfilteredAPIData(result.cards);
+        })
+        .catch((e) => {
+          console.log(e, "error from fetch");
+        });
+    }
+  }, [searchTerm]);
+
+  return (
+    <div>
+      <div className="searchBar">
+        <SearchBar
+          placeholder="Enter a Card Name..."
+          data={filteredAPIData}
+          onChange={handleClick} //sends data to the child component Searchbar
         />
-        </div>
-            <h1>This is where full list of cards can be browsed</h1>
-            {filteredData.map(i=><DisplayCard card={i} />)}
-        </div>
-    )
+      </div>
+      <h1>This is where full list of cards can be browsed</h1>
+      {filteredAPIData.map((i) => (
+        <DisplayCard card={i} />
+      ))}
+    </div>
+  );
 };
 export default Archive;
-
-
-
-
-    //incoming data from searchbar component
-   
-
-//heres where i'll get my cards from my JSON file
-//const getArchiveCards = filteredData.map
-
-
