@@ -8,6 +8,7 @@ import NavBar from './components/navBar';
 import Collection from './pages/myCollection';
 import Decks from './pages/myDecks';
 import Archive from './pages/archive';
+import Home from './pages/home';
 // Search bar
 //import SearchBar from './components/searchBar'
 //import CardData from "./components/default-cards.json"
@@ -21,6 +22,7 @@ function App() {
       {view === 'myCollection' && <Collection/>}
       {view === 'myDecks' && <Decks/>}
       {view === 'archive' && <Archive/>}
+      {view === 'home' && <Home />}
     </div>
   );
 }

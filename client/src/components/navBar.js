@@ -25,6 +25,10 @@ const NavBar = ({setView}) => {
           <img className="nav-img" src={logo}/>
           <h1>Commanders Keep</h1>
           </div>
+
+          <div className="navbar-btn" onClick={() => setView("home")}>
+            <h2>Home</h2>
+          </div>
         
           <div className="navbar-btn" onClick={() => setView("myCollection")}>
             <h2>My Collection</h2>
