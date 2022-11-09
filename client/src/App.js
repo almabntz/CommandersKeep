@@ -33,14 +33,16 @@ function App() {
       {view === 'myDecks' && <Decks/>}
       {view === 'archive' && <Archive/>}
       {view === 'home' && <Home />}
-      
+
 <div className="container flex-grow-1">
-  { !user ? <span>Hello from Techtonica</span> : <Dashboard /> }
+ 
 <Auth0NavBar/>
 </div>
-
+{!user ? <a>Greetings, Planeswalker</a> : <a>Welcome back, Planeswalker {user.name}</a>}
     </div>
   );
 }
 
 export default App;
+
+// { !user ? <span>Hello from Techtonica</span> : <Dashboard /> }
