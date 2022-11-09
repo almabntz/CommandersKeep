@@ -9,9 +9,9 @@ import Collection from './pages/myCollection';
 import Decks from './pages/myDecks';
 import Archive from './pages/archive';
 import Home from './pages/home';
-// Search bar
-//import SearchBar from './components/searchBar'
-//import CardData from "./components/default-cards.json"
+//auth0
+import Auth0NavBar from './auth/nav-bar';
+
 
 function App() {
   const [view, setView] = useState("myCollection")
@@ -23,6 +23,10 @@ function App() {
       {view === 'myDecks' && <Decks/>}
       {view === 'archive' && <Archive/>}
       {view === 'home' && <Home />}
+<div>
+<Auth0NavBar/>
+</div>
+
     </div>
   );
 }
