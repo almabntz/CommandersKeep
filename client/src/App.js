@@ -38,7 +38,7 @@ function App() {
  
 <Auth0NavBar/>
 </div>
-{!user ? <a>Greetings, Planeswalker</a> : <a>Welcome back, Planeswalker {user.name}</a>}
+{!user ? <span>Greetings, Planeswalker</span> : <span>Welcome back, Planeswalker <Link to ="">{user.name}</Link></span>}
     </div>
   );
 }
