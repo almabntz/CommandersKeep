@@ -45,4 +45,3 @@ function App() {
 
 export default App;
 
-// { !user ? <span>Hello from Techtonica</span> : <Dashboard /> }
