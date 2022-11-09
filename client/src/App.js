@@ -8,9 +8,6 @@ import NavBar from './components/navBar';
 import Collection from './pages/myCollection';
 import Decks from './pages/myDecks';
 import Archive from './pages/archive';
-// Search bar
-//import SearchBar from './components/searchBar'
-//import CardData from "./components/default-cards.json"
 
 function App() {
   const [view, setView] = useState("myCollection")
