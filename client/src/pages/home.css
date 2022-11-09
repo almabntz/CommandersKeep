@@ -1,3 +1,4 @@
-.landing{
-    background-image: url("./components/landing.jpg");
+.home {
+    background-image: url("./components/landing.JPG");
+    background-color: blue;
 }

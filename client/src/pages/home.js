@@ -7,7 +7,24 @@ const Home = () => {
 
 return (
     <div className="home">
-        <h1>This is my landing page</h1>
+
+<h1>This is my landing page</h1>
+
+        <label>Email:</label>
+        <input
+        type= "text"
+        placeholder="myEmail@gmail.com"
+        required
+        />
+         <label>Password:</label>
+        <input
+        type= "text"
+        placeholder="Password"
+        required
+        />
+       
+
+
     </div>
 )
 
