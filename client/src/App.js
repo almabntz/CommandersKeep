@@ -21,7 +21,7 @@ function App() {
   //auth0
   const { isLoading } = useAuth0();
   const { user } = useAuth0();
-  console.log(user);
+ // console.log(user);
   if (isLoading) {
     return <Loading />;
   }
@@ -29,19 +29,21 @@ function App() {
   return (
     //Nav Bar Code
     <div id="app" className="d-flex flex-column h-100">
-      {!user ? (<h1>Please sign in, TEST TEXT </h1>) : <NavBar/>}
-      <NavBar setView={setView} user={user}/>
+      {!user ?  (<><Auth0NavBar/><span>Greetings, Planeswalker</span> </>) : (
+      <>
+      <NavBar setView={setView} user={user} />
       {view === 'myCollection' && <Collection/>}
       {view === 'myDecks' && <Decks/>}
       {view === 'archive' && <Archive/>}
       {view === 'home' && <Home />}
-  
 
-<div className="container flex-grow-1">
+      
+      </>
+      )};
+{/* <div className="container flex-grow-1">
 
-<Auth0NavBar/>
-</div>
-{!user ? <span>Greetings, Planeswalker</span> : <span>Welcome back, Planeswalker <Link to ="">{user.name}</Link></span>}
+
+  </div> */}
     </div>
   );
 }

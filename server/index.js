@@ -3,6 +3,9 @@ import cors from 'cors';
 //import fetch from 'node-fetch';
 import bodyParser from 'body-parser';
 import pgPromise from 'pg-promise';
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express();
 const PORT = 8080;
@@ -51,6 +54,85 @@ app.get('/', (request, response) => {
     response.json({ info: 'hello from my backend'})
 });
 
+
+//TEST CODE
+
+app.post('/api/users', cors(), async (req, res) => {
+  const newUser = {
+  lastname: req.body.family_name,
+  firstname: req.body.given_name,
+  email: req.body.email,
+  sub: req.body.sub
+  
+  }
+  //console.log(newUser);
+  
+  const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
+  const valuesEmail = [newUser.email]
+  const resultsEmail = await db.query(queryEmail, valuesEmail);
+  if(resultsEmail.length>0){
+  console.log(`Thank you ${resultsEmail.firstname} for comming back`)
+  } else{
+  const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
+  const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
+  const result = await db.query(query, values);
+  console.log(result);
+  
+  }
+  
+  });
+
+//END TEST CODE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//POST request for my DB in User
+// create the POST request
+// app.post('/users', async (req, res) => {
+  
+//   console.log(req.body)
+
+//   const newUser = {
+//     lastname: req.body.family_name,
+//     firstname: req.body.given_name,
+//     email: req.body.email,
+//     sub: req.body.sub
+//   };
+  
+// //inserts data into DB table Users
+  
+// const queryEmail = 'SELECT * FROM users WHERE email=$1 LIMIT 1';
+// const valuesEmail = [newUser.email]
+// const resultsEmail = await db.query(queryEmail, valuesEmail);
+// if(resultsEmail.rows[0]){
+//   console.log(`Thank you ${resultsEmail.rows[0].firstname} for comming back`)
+// } else{
+// const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
+// const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
+// const result = await db.query(query, values);
+// console.log(result.rows[0]);
+
+// console.log("This is new user BACKEND", newUser)
+// }
+
+// });
 
 
 app.listen(PORT, () => console.log(`Hello from backend! server is running on port ${PORT}`));
