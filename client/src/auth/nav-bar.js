@@ -1,6 +1,5 @@
-
-import React from 'react';
-import AuthNav from './auth-nav';
+import React from "react";
+import AuthNav from "./auth-nav";
 
 const Auth0NavBar = () => {
   return (
@@ -8,9 +7,7 @@ const Auth0NavBar = () => {
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
           <div className="navbar-brand logo" />
-         
           <AuthNav />
-
         </div>
       </nav>
     </div>
