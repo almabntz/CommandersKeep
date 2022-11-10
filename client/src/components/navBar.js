@@ -1,11 +1,10 @@
 import React from "react";
 import logo from "./logo.jpg"
-// Search bar
-//import SearchBar from "./searchBar";
-//import CardData from "./default-cards.json"
+import Profile from "./profile";
 
 const NavBar = ({setView}) => {
     //logic goes here
+    //let user = props.user;
 
     return(
         //this data is being passed to App.js
@@ -41,7 +40,7 @@ const NavBar = ({setView}) => {
           <div className="navbar-btn" onClick={() => setView("archive")}>
             <h2>Archive</h2>
           </div>
-          
+         
         </div>
         </div>
     )
