@@ -13,6 +13,8 @@ const PORT = 8080;
 //config cors middleware
 app.use(cors());
 
+app.use(bodyParser.json());
+
 //pg promise instance
 const pgp = pgPromise({});
 
@@ -58,6 +60,7 @@ app.get('/', (request, response) => {
 //TEST CODE
 
 app.post('/api/users', cors(), async (req, res) => {
+  console.log(req.body, "this is req body")
   const newUser = {
   lastname: req.body.family_name,
   firstname: req.body.given_name,
@@ -73,10 +76,11 @@ app.post('/api/users', cors(), async (req, res) => {
   if(resultsEmail.length>0){
   console.log(`Thank you ${resultsEmail.firstname} for comming back`)
   } else{
+    console.log("This is ELSE")
   const query = 'INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *'
   const values = [newUser.lastname, newUser.firstname, newUser.email, newUser.sub]
   const result = await db.query(query, values);
-  console.log(result);
+  console.log(result, "This is the end of else");
   
   }
   

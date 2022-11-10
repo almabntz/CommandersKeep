@@ -7,7 +7,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const saveUser = (user) => {
-  return fetch('/api/users', {
+  return fetch('http://localhost:8080/api/users', {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
