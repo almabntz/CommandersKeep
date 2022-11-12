@@ -10,12 +10,8 @@ import React, { useEffect, useState } from 'react';
 *  
 */
 
-
-
-
-
 const Collection = () => {
-    //logic goes here
+   const [myCollection, setMyCollection] = useState([]); //This will hold cards 
     return (
         <div>
             <h1>This is my Collection</h1>

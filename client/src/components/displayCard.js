@@ -1,9 +1,8 @@
 import React from "react";
 import "./displayCard.css";
 
-const DisplayCard = ({ card }) => {
-  // const onClick () => {}
-  //THIS WILL COME LATER AND WILL PASS DATA TO MYCOLLECTION
+const DisplayCard = ({ card, addButton }) => {
+const AddButton = addButton; //This is a prop from Archive 
 
   return (
     <div className="card">
@@ -29,8 +28,8 @@ const DisplayCard = ({ card }) => {
       <div className="card-footer w-100 text-muted">
         <p>
           <b>legalities:</b> {JSON.stringify(card.legalities)}
+          <AddButton/>
         </p>
-        <button className="card-add-button"> + My Collection </button>
       </div>
     </div>
   );

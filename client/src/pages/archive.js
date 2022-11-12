@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/searchBar";
-import DisplayCard from "../components/displayCard"; 
-//import CardData from "../components/default-cards2.json"
+import DisplayCard from "../components/displayCard";
+import AddCollection from "../components/addCollection";
 
-/* 
-*                           Parent: Archive 
-*   Parent has access to these props placeholder, data, onChange, card
-*
-*    Child: SeachBar                     Child: DisplayCard
-*  onChange prop passed from parent   Card prop passed from parent
-*/
-
-
+/*
+ *                           Parent: Archive
+ *   Parent has access to these props placeholder, data, onChange, card
+ *
+ *    Child: SeachBar                     Child: DisplayCard
+ *  onChange prop passed from parent   Card prop passed from parent
+ */
 
 const Archive = ({}) => {
   const [filteredAPIData, setfilteredAPIData] = useState([]); //useState for data receive from search bar
@@ -29,7 +27,7 @@ const Archive = ({}) => {
     console.log(searchResults.cards);
     setfilteredAPIData(searchResults.cards);
   };
-  
+
   //logic that will send data to child, searchbar
   const handleClick = (word) => {
     //search term from search bar onchange
@@ -46,11 +44,7 @@ const Archive = ({}) => {
           return res.json();
         })
         .then((result) => {
-          console.log(
-            searchTerm,
-            result,
-
-          );
+          console.log(searchTerm, result);
           setfilteredAPIData(result.cards);
         })
         .catch((e) => {
@@ -70,7 +64,7 @@ const Archive = ({}) => {
       </div>
       <h1>This is where full list of cards can be browsed</h1>
       {filteredAPIData.map((i) => (
-        <DisplayCard card={i} />
+        <DisplayCard card={i} addButton={AddCollection} />
       ))}
     </div>
   );
