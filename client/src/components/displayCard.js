@@ -22,7 +22,7 @@ const DisplayCard = ({ card }) => {
             <b>Flavor Text:</b> {JSON.stringify(card.originalText)}
             <br></br>
             <br></br>
-            <b>Resale Value:</b> ${JSON.stringify(card.cmc)}
+            <b>Converted Mana Cost:</b> ${JSON.stringify(card.cmc)}
           </p>
         </div>
       </div>
