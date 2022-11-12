@@ -15,6 +15,9 @@ const Archive = ({}) => {
   const [filteredAPIData, setfilteredAPIData] = useState([]); //useState for data receive from search bar
   const [searchTerm, setSearchTerm] = useState(""); //useState for key search term
 
+  //NEW CODE MIGHT BREAK PROJECT VVV
+  const [currentCollection, setCurrentCollection] = useState([]); //useState for users card collection
+
   //fetch from API
   //GET request from backend, will bring data to front
   const getCardsFromAPI = async () => {
@@ -53,6 +56,15 @@ const Archive = ({}) => {
     }
   }, [searchTerm]);
 
+  //NEW CODE MIGHT BREAK PROJECT VVV
+  const sendToCollection = (archiveCard) => {
+    //creates a copy of current collection of cards and updates it to add the new selected card
+    const newToCollection = [...currentCollection, archiveCard];
+    //updates useState so that new card is in currentCollection array
+    setCurrentCollection(newToCollection);
+    console.log(currentCollection);
+  };
+
   return (
     <div>
       <div className="searchBar">
@@ -64,8 +76,18 @@ const Archive = ({}) => {
       </div>
       <h1>This is where full list of cards can be browsed</h1>
       {filteredAPIData.map((i) => (
-        <DisplayCard card={i} addButton={AddCollection} />
+        <DisplayCard
+          card={i}
+          addButton={AddCollection}
+          handleAddClick={sendToCollection}
+        />
       ))}
+      <DisplayCard
+        addButton={AddCollection}
+        handleAddClick={sendToCollection}
+        card={currentCollection}
+      />
+      <h1>COLLECTION TEST CARD</h1>
     </div>
   );
 };

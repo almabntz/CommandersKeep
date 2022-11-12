@@ -1,7 +1,7 @@
 import React from "react";
 import "./displayCard.css";
 
-const DisplayCard = ({ card, addButton }) => {
+const DisplayCard = ({ card, addButton, handleAddClick }) => {
 const AddButton = addButton; //This is a prop from Archive 
 
   return (
@@ -28,7 +28,9 @@ const AddButton = addButton; //This is a prop from Archive
       <div className="card-footer w-100 text-muted">
         <p>
           <b>legalities:</b> {JSON.stringify(card.legalities)}
+          <div onClick= {handleAddClick}>
           <AddButton/>
+          </div>
         </p>
       </div>
     </div>
