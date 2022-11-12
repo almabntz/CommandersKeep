@@ -1,5 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
+/* 
+*   Parent: Collection 
+*   
+*
+*
+*
+*    Child: DisplayCard
+*  
+*/
+
+
+
+
+
 const Collection = () => {
     //logic goes here
     return (
