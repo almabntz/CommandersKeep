@@ -56,6 +56,8 @@ const Archive = ({}) => {
     }
   }, [searchTerm]);
 
+
+
   //NEW CODE MIGHT BREAK PROJECT VVV
   const sendToCollection = (archiveCard) => {
     //creates a copy of current collection of cards and updates it to add the new selected card
@@ -65,6 +67,8 @@ const Archive = ({}) => {
     console.log(currentCollection);
   };
 
+
+  
   return (
     <div>
       <div className="searchBar">
@@ -82,11 +86,11 @@ const Archive = ({}) => {
           handleAddClick={sendToCollection}
         />
       ))}
-      <DisplayCard
+      {/* <DisplayCard
         addButton={AddCollection}
         handleAddClick={sendToCollection}
         card={currentCollection}
-      />
+      /> */}
       <h1>COLLECTION TEST CARD</h1>
     </div>
   );

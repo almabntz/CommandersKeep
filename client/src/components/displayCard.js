@@ -21,7 +21,7 @@ const AddButton = addButton; //This is a prop from Archive
             <b>Flavor Text:</b> {JSON.stringify(card.originalText)}
             <br></br>
             <br></br>
-            <b>Converted Mana Cost:</b> ${JSON.stringify(card.cmc)}
+            <b>Converted Mana Cost:</b>{JSON.stringify(card.cmc)}
           </p>
         </div>
       </div>
