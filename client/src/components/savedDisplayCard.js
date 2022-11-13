@@ -8,17 +8,17 @@ const SavedDisplayCard = ({displayCollection}) => {
     <div className="card">
       <div className="card-horizontal">
         <div className="img-square-wrapper">
-          {displayCollection.imageUrl && (
-            <img src={displayCollection.imageUrl} alt="image" className="card-img" />
+          {displayCollection.imgurl && (
+            <img src={displayCollection.imgurl} alt="image" className="card-img" />
           )}
         </div>
         <div className="card-body">
           <h2 className="card-title">{displayCollection.name}</h2>
           <p className="card-text">
-            <b>Mana Cost:</b> {JSON.stringify(displayCollection.manaCost)}
+            <b>Mana Cost:</b> {JSON.stringify(displayCollection.manacost)}
             <br></br>
             <br></br>
-            <b>Flavor Text:</b> {JSON.stringify(displayCollection.originalText)}
+            <b>Flavor Text:</b> {JSON.stringify(displayCollection.originaltext)}
             <br></br>
             <br></br>
             <b>Converted Mana Cost:</b> {JSON.stringify(displayCollection.cmc)}
