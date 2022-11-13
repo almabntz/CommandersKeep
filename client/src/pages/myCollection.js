@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SavedDisplayCard from "../components/savedDisplayCard";
+import DisplayCard from "../components/displayCard";
 //import bodyParser from "body-parser";
 //import AddCollection from "../components/addCollection";
 /*
@@ -51,7 +52,7 @@ getCollection();
     <div>
       <div>
         {myCollection.map((myCards, i) => {
-          return <SavedDisplayCard displayCollection = {myCards} />;
+          return <SavedDisplayCard key={i} displayCollection = {myCards} />;
         })}
         This is my collection
       </div>
@@ -59,5 +60,3 @@ getCollection();
   );
 };
 export default Collection;
-//displayCollection={myCards}
-//key={index} 

@@ -21,7 +21,7 @@ const SavedDisplayCard = ({displayCollection}) => {
             <b>Flavor Text:</b> {JSON.stringify(displayCollection.originalText)}
             <br></br>
             <br></br>
-            <b>Converted Mana Cost:</b> ${JSON.stringify(displayCollection.cmc)}
+            <b>Converted Mana Cost:</b> {JSON.stringify(displayCollection.cmc)}
           </p>
         </div>
       </div>

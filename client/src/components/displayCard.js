@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./displayCard.css";
+//import bodyParser from "body-parser";
 
-const DisplayCard = ({ card }) => {
- 
-  //THIS WILL COME LATER AND WILL PASS DATA TO MYCOLLECTION
-   //const onClick () => {}
+const DisplayCard = ({ card, addNewCard, updateCollection, setUpdateCollection }) => {
+ //const[addToCollection, setAddToCollection] = useState([]);
+   const handleAddClick =(e) => {
+    e.preventDefault();
+    addNewCard(updateCollection)
+    setUpdateCollection({
+      user_id: "",
+      id: "",
+      name: "",
+      manaCost: "",
+      originalText: "",
+      cmc: "",
+      imageUrl: ""
+    });
+   }
 
+     //setAddToCollection((prev) => [...prev, e])
+     
   return (
     <div className="card">
       <div className="card-horizontal">
@@ -32,7 +46,7 @@ const DisplayCard = ({ card }) => {
           <b>legalities:</b> {JSON.stringify(card.legalities)}
         </p>
       </div>
-      <button>+ My Collection</button>
+      <button onClick={handleAddClick}>+ My Collection</button>
     </div>
   );
 };
