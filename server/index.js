@@ -34,13 +34,42 @@ app.get("/users", async function (req, res, next) {
 
 //GET from user_collection
 app.get("/user_collection", async function (req, res, next) {
-    try {
-      const userCollection = await db.any("SELECT * FROM user_collection", [true]);
-      res.send(userCollection);
-    } catch (e) {
-      return res.status(400).json({ e });
-    }
-  });
+  try {
+    const userCollection = await db.any("SELECT * FROM user_collection", [
+      true,
+    ]);
+    res.send(userCollection);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+//POST request for user_collection
+// POST for myposts
+//this data is interacting with my Home and addPost conponents in the front end
+app.post("/user_collection", async (req, res) => {
+  const updateCollection = {
+    id: req.body.id,
+    name: req.body.name,
+    manaCost: req.body.manaCost,
+    originalText: req.body.originalText,
+    cmc: req.body.cmc,
+    imgUrl: req.body.imgUrl,
+    // user_id: req.body.user_id
+  };
+  console.log(updateCollection);
+
+  try {
+    const insertCollection = await db.any(
+      "INSERT INTO user_collection(id, name, manacost, originaltext, cmc, imgurl, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [updateCollection.id, updateCollection.name, updateCollection.manaCost, updateCollection.originalText, updateCollection.cmc, updateCollection.imgUrl, "3"]
+    );
+    console.log(insertCollection);
+    res.send(insertCollection);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
 
 //GET request for MTG api
 app.get("api/cards", cors(), async (req, res) => {
@@ -66,7 +95,7 @@ app.get("/", (request, response) => {
 // app.post("/api/users", cors(), async (req, res) => {
 //   console.log(req.body, "this is req body");
 //   const newUser = {
-//     //data being received from front end 
+//     //data being received from front end
 //     lastname: req.body.family_name,
 //     firstname: req.body.given_name,
 //     email: req.body.email,
@@ -79,7 +108,7 @@ app.get("/", (request, response) => {
 //   if (resultsEmail.length > 0) {
 //     //console.log(`Welcome back, Planeswalker ${resultsEmail.firstname} !`)
 //   } else {
-    //Values that are being inserted into table if new user
+//Values that are being inserted into table if new user
 //     const query =
 //       "INSERT INTO users(lastname, firstname, email, sub) VALUES($1, $2, $3, $4) RETURNING *";
 //     const values = [

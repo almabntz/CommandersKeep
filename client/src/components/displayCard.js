@@ -2,20 +2,27 @@ import React, { useEffect, useState } from "react";
 import "./displayCard.css";
 //import bodyParser from "body-parser";
 
-const DisplayCard = ({ card, addNewCard, updateCollection, setUpdateCollection }) => {
- //const[addToCollection, setAddToCollection] = useState([]);
-   const handleAddClick =(e) => {
+const DisplayCard = ({ card }) => {
+ const[updateCollection, setUpdateCollection] = useState([]);
+   const addNewCard = async (e) => {
     e.preventDefault();
-    addNewCard(updateCollection)
-    setUpdateCollection({
-      user_id: "",
-      id: "",
-      name: "",
-      manaCost: "",
-      originalText: "",
-      cmc: "",
-      imageUrl: ""
-    });
+    console.log(updateCollection);
+    await fetch ("http://localhost:8080/user_collection",{
+    method: "POST",
+    headers: {Accept:"application/json", "Content-Type" : "application/json"},
+    body: JSON.stringify( card ),
+  })
+console.log(card, "this is card")
+    // setUpdateCollection({
+    //   user_id: "",
+    //   id: "",
+    //   name: "",
+    //   manaCost: "",
+    //   originalText: "",
+    //   cmc: "",
+    //   imageUrl: ""
+    // });
+
    }
 
      //setAddToCollection((prev) => [...prev, e])
@@ -46,7 +53,7 @@ const DisplayCard = ({ card, addNewCard, updateCollection, setUpdateCollection }
           <b>legalities:</b> {JSON.stringify(card.legalities)}
         </p>
       </div>
-      <button onClick={handleAddClick}>+ My Collection</button>
+      <button onClick={(e) => addNewCard(e)}>+ My Collection</button>
     </div>
   );
 };

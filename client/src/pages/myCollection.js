@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SavedDisplayCard from "../components/savedDisplayCard";
-import DisplayCard from "../components/displayCard";
+//import DisplayCard from "../components/displayCard";
 //import bodyParser from "body-parser";
 //import AddCollection from "../components/addCollection";
 /*
@@ -14,15 +14,15 @@ import DisplayCard from "../components/displayCard";
  */
 const Collection = ({ sendToCollection, currentCollection }) => {
   const [myCollection, setMyCollection] = useState([]); //This will hold users collection of cards
-  const [updateCollection, setUpdateCollection] = useState({
-    user_id: "",
-    id: "",
-    name: "",
-    manaCost: "",
-    originalText: "",
-    cmc: "",
-    imageUrl: ""
-  }); 
+  // const [updateCollection, setUpdateCollection] = useState({
+  //   user_id: "",
+  //   id: "",
+  //   name: "",
+  //   manaCost: "",
+  //   originalText: "",
+  //   cmc: "",
+  //   imageUrl: ""
+  // }); 
 
   //fetch from DB, Get request
   const getCollection = async () => {
@@ -34,18 +34,18 @@ const Collection = ({ sendToCollection, currentCollection }) => {
     getCollection();
   }, [myCollection]);
 
-  //Post to DB table user_collection
-  const addNewCard = async (updateCollection) => {
-    console.log(updateCollection)
-    const response = await fetch ("http://localhost:8080/user_collection",{
-    method: "POST",
-    headers: {"Content-Type" : "application/json"},
-    body: JSON.stringify( updateCollection),
-  })
-const data = await response.json ();
-console.log(data);
-getCollection();
-}
+//   //Post to DB table user_collection
+//   const addNewCard = async (updateCollection) => {
+//     console.log(updateCollection)
+//     const response = await fetch ("http://localhost:8080/user_collection",{
+//     method: "POST",
+//     headers: {"Content-Type" : "application/json"},
+//     body: JSON.stringify( updateCollection),
+//   })
+// const data = await response.json ();
+// console.log(data);
+// getCollection();
+// }
   
 
   return (
