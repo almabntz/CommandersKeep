@@ -2,8 +2,9 @@ import React from "react";
 import "./displayCard.css";
 
 const DisplayCard = ({ card }) => {
-  // const onClick () => {}
+ 
   //THIS WILL COME LATER AND WILL PASS DATA TO MYCOLLECTION
+   //const onClick () => {}
 
   return (
     <div className="card">
@@ -31,6 +32,7 @@ const DisplayCard = ({ card }) => {
           <b>legalities:</b> {JSON.stringify(card.legalities)}
         </p>
       </div>
+      <button>+ My Collection</button>
     </div>
   );
 };
