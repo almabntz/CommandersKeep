@@ -69,8 +69,8 @@ const Archive = ({}) => {
         />
       </div>
       <h1>This is where full list of cards can be browsed</h1>
-      {filteredAPIData.map((i) => (
-        <DisplayCard card={i} />
+      {filteredAPIData.map((i, index) => (
+        <DisplayCard key={index} card={i}  />
       ))}
     </div>
   );

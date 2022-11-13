@@ -1,39 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./displayCard.css";
-//import bodyParser from "body-parser";
 
 const DisplayCard = ({ card }) => {
- const[updateCollection, setUpdateCollection] = useState([]);
-   const addNewCard = async (e) => {
+  const [updateCollection, setUpdateCollection] = useState([]);
+  const addNewCard = async (e) => {
     e.preventDefault();
     console.log(updateCollection);
-    await fetch ("http://localhost:8080/user_collection",{
-    method: "POST",
-    headers: {Accept:"application/json", "Content-Type" : "application/json"},
-    body: JSON.stringify( card ),
-  })
-console.log(card, "this is card")
-    // setUpdateCollection({
-    //   user_id: "",
-    //   id: "",
-    //   name: "",
-    //   manaCost: "",
-    //   originalText: "",
-    //   cmc: "",
-    //   imageUrl: ""
-    // });
+    //POST request that send card data to user_Collection
+    await fetch("http://localhost:8080/user_collection", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(card),
+    });
+    console.log(card, "this is card");
+  };
 
-   }
-
-     //setAddToCollection((prev) => [...prev, e])
-     
   return (
     <div className="card">
       <div className="card-horizontal">
         <div className="img-square-wrapper">
-          {card.imageUrl && (
+          <img src={card.imageUrl} alt="image" className="card-img" />
+          {/* {card.imageUrl && (
             <img src={card.imageUrl} alt="image" className="card-img" />
-          )}
+          )} */}
         </div>
         <div className="card-body">
           <h2 className="card-title">{card.name}</h2>
@@ -41,7 +33,7 @@ console.log(card, "this is card")
             <b>Mana Cost:</b> {JSON.stringify(card.manaCost)}
             <br></br>
             <br></br>
-            <b>Flavor Text:</b> {JSON.stringify(card.originalText)}
+            <b>Flavor Text:</b> {JSON.stringify(card.text)}
             <br></br>
             <br></br>
             <b>Converted Mana Cost:</b> ${JSON.stringify(card.cmc)}

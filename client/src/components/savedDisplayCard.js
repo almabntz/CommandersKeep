@@ -8,6 +8,7 @@ const SavedDisplayCard = ({displayCollection}) => {
     <div className="card">
       <div className="card-horizontal">
         <div className="img-square-wrapper">
+        {/* <img src={displayCollection.imgurl} alt="image" className="card-img" /> */}
           {displayCollection.imgurl && (
             <img src={displayCollection.imgurl} alt="image" className="card-img" />
           )}
@@ -26,9 +27,6 @@ const SavedDisplayCard = ({displayCollection}) => {
         </div>
       </div>
       <div className="card-footer w-100 text-muted">
-        <p>
-          <b>legalities:</b> {JSON.stringify(displayCollection.legalities)}
-        </p>
       </div>
     </div>
   );
