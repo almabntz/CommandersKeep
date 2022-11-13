@@ -1,8 +1,9 @@
 import React from "react";
 import "./displayCard.css";
 
-const DisplayCard = ({ card, addButton, handleAddClick }) => {
-const AddButton = addButton; //This is a prop from Archive 
+const DisplayCard = ({ card }) => {
+  // const onClick () => {}
+  //THIS WILL COME LATER AND WILL PASS DATA TO MYCOLLECTION
 
   return (
     <div className="card">
@@ -21,16 +22,13 @@ const AddButton = addButton; //This is a prop from Archive
             <b>Flavor Text:</b> {JSON.stringify(card.originalText)}
             <br></br>
             <br></br>
-            <b>Converted Mana Cost:</b>{JSON.stringify(card.cmc)}
+            <b>Converted Mana Cost:</b> ${JSON.stringify(card.cmc)}
           </p>
         </div>
       </div>
       <div className="card-footer w-100 text-muted">
         <p>
           <b>legalities:</b> {JSON.stringify(card.legalities)}
-          <div onClick= {handleAddClick}>
-          <AddButton/>
-          </div>
         </p>
       </div>
     </div>
@@ -38,8 +36,3 @@ const AddButton = addButton; //This is a prop from Archive
 };
 
 export default DisplayCard;
-
-/*I know i need to take individual card data and pass if from displatcard to collection
-I think i can assign the prop value to each card and have that data post to a table in the back.
-im going to start by looking into tutorials on how to save "favorites" because the concepts 
-are similar*/

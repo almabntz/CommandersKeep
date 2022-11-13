@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-//import DisplayCard from "../components/displayCard";
+import SavedDisplayCard from "../components/savedDisplayCard";
+//import bodyParser from "body-parser";
 //import AddCollection from "../components/addCollection";
 /*
  *   Parent: Collection
@@ -11,21 +12,30 @@ import React, { useEffect, useState } from "react";
  *
  */
 
-const Collection = ({sendToCollection,currentCollection}) => {
+const Collection = ({ sendToCollection, currentCollection }) => {
   const [myCollection, setMyCollection] = useState([]); //This will hold users collection of cards
 
   //fetch from DB, Get request
-const getCollection = async () => {
-    const response = await fetch()
-}
-
+  const getCollection = async () => {
+    const response = await fetch("http://localhost:8080/user_collection");
+    const storedCollection = await response.json();
+    setMyCollection(storedCollection);
+  };
+  useEffect(() => {
+    getCollection();
+  }, [myCollection]);
 
   return (
     <div>
       <div>
-      This is my collection
+        {myCollection.map((myCards, i) => {
+          return <SavedDisplayCard displayCollection = {myCards} />;
+        })}
+        This is my collection
       </div>
     </div>
   );
 };
 export default Collection;
+//displayCollection={myCards}
+//key={index} 
