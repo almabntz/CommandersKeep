@@ -13,6 +13,7 @@ import Auth0NavBar from "./auth/nav-bar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./auth/loading";
 //import Profile from "./components/profile"; will be built in later
+import { Route, Routes, Link } from 'react-router-dom';
 
 function App() {
   const [view, setView] = useState("myCollection");

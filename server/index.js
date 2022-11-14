@@ -1,3 +1,4 @@
+
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -6,6 +7,7 @@ import dotenv from "dotenv";
 
 //is using my auth0 credentials to allow me to access user info
 dotenv.config();
+
 
 const app = express();
 const PORT = 8080;
