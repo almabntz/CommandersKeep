@@ -1,16 +1,23 @@
-
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 //is using my auth0 credentials to allow me to access user info
 dotenv.config();
 
-
 const app = express();
-const PORT = 8080;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const REACT_BUILD_DIR = path.join(__dirname, '..', 'client', 'build')
+app.use(express.static(REACT_BUILD_DIR));
+
+const PORT = process.env.PORT || 8080;
 
 //config cors middleware
 app.use(cors());
@@ -34,6 +41,44 @@ app.get("/users", async function (req, res, next) {
   }
 });
 
+//GET from user_collection
+app.get("/user_collection", async function (req, res, next) {
+  try {
+    const userCollection = await db.any("SELECT * FROM user_collection", [
+      true,
+    ]);
+    res.send(userCollection);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+//POST request for user_collection
+app.post("/user_collection", async (req, res) => {
+  const updateCollection = {
+    id: req.body.id,
+    name: req.body.name,
+    manaCost: req.body.manaCost,
+    originalText: req.body.originalText,
+    cmc: req.body.cmc,
+    imgUrl: req.body.imgUrl,
+    // user_id: req.body.user_id
+  };
+  console.log(updateCollection);
+
+  try {
+    const insertCollection = await db.any(
+      "INSERT INTO user_collection(id, name, manacost, originaltext, cmc, imgurl, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [updateCollection.id, updateCollection.name, updateCollection.manaCost, updateCollection.originalText, updateCollection.cmc, updateCollection.imgUrl, "3"]
+    );
+    console.log(insertCollection);
+    res.send(insertCollection);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+
 //GET request for MTG api
 app.get("api/cards", cors(), async (req, res) => {
   const url = `https://api.magicthegathering.io/v1/cards?name=${searchTerm}`;
@@ -51,7 +96,9 @@ app.get("api/cards", cors(), async (req, res) => {
 
 //end point for route
 app.get("/", (request, response) => {
-  response.json({ info: "hello from my backend" });
+
+  //response.json({ info: "hello from my backend" });
+  response.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
 });
 
 //POST for incoming data from front end. will post to DB table users
@@ -84,6 +131,9 @@ app.post("/api/users", cors(), async (req, res) => {
   }
 });
 
+
 app.listen(PORT, () =>
   console.log(`Hello from backend! server is running on port ${PORT}`)
 );
+  response.json({ info: "hello from my backend" });
+});
