@@ -12,7 +12,7 @@ const Collection = ({ sendToCollection, currentCollection }) => {
   const [myCollection, setMyCollection] = useState([]); //This will hold users collection of cards
   //fetch from DB, Get request
   const getCollection = async () => {
-    const response = await fetch("http://localhost:8080/user_collection");
+    const response = await fetch("/user_collection");
     const storedCollection = await response.json();
     setMyCollection(storedCollection);
   };

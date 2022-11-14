@@ -2,13 +2,22 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import pgPromise from "pg-promise";
-//import dotenv from "dotenv";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 
 //is using my auth0 credentials to allow me to access user info
-//dotenv.config();
+dotenv.config();
 
 const app = express();
-const PORT = 8080;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const REACT_BUILD_DIR = path.join(__dirname, '..', 'client', 'build')
+app.use(express.static(REACT_BUILD_DIR));
+
+const PORT = process.env.PORT || 8080;
 
 //config cors middleware
 app.use(cors());
@@ -45,8 +54,6 @@ app.get("/user_collection", async function (req, res, next) {
 });
 
 //POST request for user_collection
-// POST for myposts
-//this data is interacting with my Home and addPost conponents in the front end
 app.post("/user_collection", async (req, res) => {
   const updateCollection = {
     id: req.body.id,
@@ -88,7 +95,8 @@ app.get("api/cards", cors(), async (req, res) => {
 
 //end point for route
 app.get("/", (request, response) => {
-  response.json({ info: "hello from my backend" });
+  //response.json({ info: "hello from my backend" });
+  response.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
 });
 
 //POST for incoming data from front end. will post to DB table users

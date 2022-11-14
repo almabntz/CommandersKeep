@@ -7,7 +7,7 @@ const DisplayCard = ({ card }) => {
     e.preventDefault();
     console.log(updateCollection);
     //POST request that send card data to user_Collection
-    await fetch("http://localhost:8080/user_collection", {
+    await fetch("/user_collection", {
       method: "POST",
       headers: {
         Accept: "application/json",
