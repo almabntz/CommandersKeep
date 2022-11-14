@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "./logo.jpg";
-//import Profile from "./profile"; Will be added soon
+//import Profile from "./profile";
 import Auth0NavBar from "../auth/nav-bar";
 
 const NavBar = ({ setView }) => {
@@ -17,10 +17,6 @@ const NavBar = ({ setView }) => {
         <div className="logo">
           <img className="nav-img" src={logo} />
           <h1>Commanders Keep</h1>
-        </div>
-
-        <div className="navbar-btn" onClick={() => setView("home")}>
-          <h2>Home</h2>
         </div>
 
         <div className="navbar-btn" onClick={() => setView("myCollection")}>

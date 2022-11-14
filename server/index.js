@@ -14,7 +14,7 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const REACT_BUILD_DIR = path.join(__dirname, '..', 'client', 'build')
+const REACT_BUILD_DIR = path.join(__dirname, "..", "client", "build");
 app.use(express.static(REACT_BUILD_DIR));
 
 const PORT = process.env.PORT || 8080;
@@ -69,7 +69,15 @@ app.post("/user_collection", async (req, res) => {
   try {
     const insertCollection = await db.any(
       "INSERT INTO user_collection(id, name, manacost, originaltext, cmc, imgurl, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [updateCollection.id, updateCollection.name, updateCollection.manaCost, updateCollection.originalText, updateCollection.cmc, updateCollection.imgUrl, "3"]
+      [
+        updateCollection.id,
+        updateCollection.name,
+        updateCollection.manaCost,
+        updateCollection.originalText,
+        updateCollection.cmc,
+        updateCollection.imgUrl,
+        "3",
+      ]
     );
     console.log(insertCollection);
     res.send(insertCollection);
@@ -77,7 +85,6 @@ app.post("/user_collection", async (req, res) => {
     return res.status(400).json({ e });
   }
 });
-
 
 //GET request for MTG api
 app.get("api/cards", cors(), async (req, res) => {
@@ -96,16 +103,15 @@ app.get("api/cards", cors(), async (req, res) => {
 
 //end point for route
 app.get("/", (request, response) => {
-
   //response.json({ info: "hello from my backend" });
-  response.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
+  response.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
 
 //POST for incoming data from front end. will post to DB table users
 app.post("/api/users", cors(), async (req, res) => {
   console.log(req.body, "this is req body");
   const newUser = {
-    //data being received from front end 
+    //data being received from front end
     lastname: req.body.family_name,
     firstname: req.body.given_name,
     email: req.body.email,
@@ -116,7 +122,7 @@ app.post("/api/users", cors(), async (req, res) => {
   const valuesEmail = [newUser.email];
   const resultsEmail = await db.query(queryEmail, valuesEmail);
   if (resultsEmail.length > 0) {
-    //console.log(`Welcome back, Planeswalker ${resultsEmail.firstname} !`)
+    console.log(`Welcome back, Planeswalker ${resultsEmail.firstname} !`);
   } else {
     //Values that are being inserted into table if new user
     const query =
@@ -131,9 +137,6 @@ app.post("/api/users", cors(), async (req, res) => {
   }
 });
 
-
 app.listen(PORT, () =>
   console.log(`Hello from backend! server is running on port ${PORT}`)
 );
-  response.json({ info: "hello from my backend" });
-});

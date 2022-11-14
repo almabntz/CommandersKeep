@@ -7,13 +7,12 @@ import NavBar from "./components/navBar";
 import Collection from "./pages/myCollection";
 import Decks from "./pages/myDecks";
 import Archive from "./pages/archive";
-import Home from "./pages/home";
 //auth0
 import Auth0NavBar from "./auth/nav-bar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./auth/loading";
-//import Profile from "./components/profile"; will be built in later
-import { Route, Routes, Link } from 'react-router-dom';
+import Profile from "./components/profile"; 
+//import { Route, Routes, Link } from 'react-router-dom';
 
 function App() {
   const [view, setView] = useState("myCollection");
@@ -40,7 +39,6 @@ function App() {
           {view === "myCollection" && <Collection />}
           {view === "myDecks" && <Decks />}
           {view === "archive" && <Archive />}
-          {view === "home" && <Home />}
         </>
       )}
       ;
