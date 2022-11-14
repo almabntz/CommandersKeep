@@ -1,0 +1,36 @@
+.card{
+    background-color: cornflowerblue;
+    padding: 10px;
+    margin-left: 10% ;
+    margin-right: 20%;
+    outline-width: medium;
+}
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+   
+  }
+
+  .img-square-wrapper {
+    padding-right: 10px;
+  
+  }
+
+  .card-img{
+    width: 223px;
+    height: 310px;
+  }
+
+  .card-body{
+    margin: 5px;
+   
+  }
+
+  .card-title{
+   background-color: aquamarine;
+  }
+
+  .card-add-button{
+    float:right;
+  }

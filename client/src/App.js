@@ -15,7 +15,6 @@ import {useAuth0} from '@auth0/auth0-react';
 import Loading from "./auth/loading";
 import { Route, Routes, Link } from 'react-router-dom';
 
-
 function App() {
   const [view, setView] = useState("myCollection")
   //auth0
