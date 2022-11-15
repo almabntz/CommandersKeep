@@ -104,7 +104,7 @@ app.get("api/cards", cors(), async (req, res) => {
 //end point for route
 app.get("/", (request, response) => {
   //response.json({ info: "hello from my backend" });
-  response.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
+  response.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
 });
 
 //POST for incoming data from front end. will post to DB table users
