@@ -1,16 +1,22 @@
 import React from "react";
 import "./displayCard.css";
 
-const SavedDisplayCard = ({displayCollection}) => {
-  //logic goes here
+const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
+  const handleDeleteCollection = (e, id) => {
+    e.preventDefault();
+    deleteCard(id);
+  };
 
   return (
     <div className="card">
       <div className="card-horizontal">
         <div className="img-square-wrapper">
-        {/* <img src={displayCollection.imgurl} alt="image" className="card-img" /> */}
           {displayCollection.imageurl && (
-            <img src={displayCollection.imageurl} alt="image" className="card-img" />
+            <img
+              src={displayCollection.imageurl}
+              alt="image"
+              className="card-img"
+            />
           )}
         </div>
         <div className="card-body">
@@ -25,9 +31,13 @@ const SavedDisplayCard = ({displayCollection}) => {
             <b>Converted Mana Cost:</b> {JSON.stringify(displayCollection.cmc)}
           </p>
         </div>
+        <button
+          className="button-card"
+          value={displayCollection.id}
+          onClick={(e) => handleDeleteCollection(e, displayCollection.id)}
+        >Delete</button>
       </div>
-      <div className="card-footer w-100 text-muted">
-      </div>
+      <div className="card-footer w-100 text-muted"></div>
     </div>
   );
 };

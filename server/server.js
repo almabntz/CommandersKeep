@@ -31,15 +31,7 @@ const pgp = pgPromise({});
 //this is porting over my whole database
 const db = pgp("postgres://localhost:5432/com_keep");
 
-// GET from users
-app.get("/users", async function (req, res, next) {
-  try {
-    const users = await db.any("SELECT * FROM users", [true]);
-    res.send(users);
-  } catch (e) {
-    return res.status(400).json({ e });
-  }
-});
+
 
 //GET from user_collection
 app.get("/user_collection", async function (req, res, next) {
@@ -86,6 +78,18 @@ app.post("/user_collection", async (req, res) => {
   }
 });
 
+//DELETE request for user collection
+app.delete("/user_collection/:id", async (req, res) => {
+  const cardId = req.params.id;
+  console.log(cardId);
+  try{
+    await db.many("DELETE FROM user_collection WHERE id=$1", [cardId]);
+    res.send({ status: "success"});
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
 //GET request for MTG api
 app.get("api/cards", cors(), async (req, res) => {
   const url = `https://api.magicthegathering.io/v1/cards?name=${searchTerm}`;
@@ -105,6 +109,16 @@ app.get("api/cards", cors(), async (req, res) => {
 app.get("/", (request, response) => {
   //response.json({ info: "hello from my backend" });
   response.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
+});
+
+// GET from users
+app.get("/users", async function (req, res, next) {
+  try {
+    const users = await db.any("SELECT * FROM users", [true]);
+    res.send(users);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
 });
 
 //POST for incoming data from front end. will post to DB table users

@@ -45,7 +45,7 @@ const DisplayCard = ({ card }) => {
           <b>legalities:</b> {JSON.stringify(card.legalities)}
         </p>
       </div>
-      <button onClick={(e) => addNewCard(e)}>+ My Collection</button>
+      <button className="button-card" onClick={(e) => addNewCard(e)}>+ My Collection</button>
     </div>
   );
 };

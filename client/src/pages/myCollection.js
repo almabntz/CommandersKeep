@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import SavedDisplayCard from "../components/savedDisplayCard";
 /*
  *   Parent: Collection
- *    displayCollection is being passed from
+ *    props displayCollection and deleteCard is being passed from
  *    collection to savedDisplayCard
  *
  *    Child: savedDisplayCard
@@ -21,12 +21,28 @@ const Collection = ({ sendToCollection, currentCollection }) => {
     getCollection();
   }, [myCollection]);
 
+  //Delete handle logic
+  const deleteCard = (deleteCardId) => {
+    return fetch(`user_collection/${deleteCardId}`, {
+      method: "DELETE",
+    }).then((response) => {
+      if (response.ok) {
+        getCollection();
+      }
+    });
+  };
 
   return (
     <div>
       <div>
         {myCollection.map((myCards, i) => {
-          return <SavedDisplayCard key={i} displayCollection = {myCards} />;
+          return (
+            <SavedDisplayCard
+              key={i}
+              displayCollection={myCards}
+              deleteCard={deleteCard}
+            />
+          );
         })}
         This is my collection
       </div>
