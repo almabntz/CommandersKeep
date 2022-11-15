@@ -9,8 +9,8 @@ const SavedDisplayCard = ({displayCollection}) => {
       <div className="card-horizontal">
         <div className="img-square-wrapper">
         {/* <img src={displayCollection.imgurl} alt="image" className="card-img" /> */}
-          {displayCollection.imgurl && (
-            <img src={displayCollection.imgurl} alt="image" className="card-img" />
+          {displayCollection.imageurl && (
+            <img src={displayCollection.imageurl} alt="image" className="card-img" />
           )}
         </div>
         <div className="card-body">

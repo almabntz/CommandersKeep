@@ -61,21 +61,21 @@ app.post("/user_collection", async (req, res) => {
     manaCost: req.body.manaCost,
     originalText: req.body.originalText,
     cmc: req.body.cmc,
-    imgUrl: req.body.imgUrl,
+    imageUrl: req.body.imageUrl,
     // user_id: req.body.user_id
   };
   console.log(updateCollection);
 
   try {
     const insertCollection = await db.any(
-      "INSERT INTO user_collection(id, name, manacost, originaltext, cmc, imgurl, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      "INSERT INTO user_collection(id, name, manacost, originaltext, cmc, imageurl, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       [
         updateCollection.id,
         updateCollection.name,
         updateCollection.manaCost,
         updateCollection.originalText,
         updateCollection.cmc,
-        updateCollection.imgUrl,
+        updateCollection.imageUrl,
         "3",
       ]
     );
