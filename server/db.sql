@@ -59,7 +59,7 @@ CREATE TABLE public.user_collection (
     manacost text,
     originaltext text,
     cmc text,
-    imgurl text,
+    imageurl text,
     user_id text
 );
 
@@ -70,8 +70,8 @@ ALTER TABLE public.user_collection OWNER TO tpl522_6;
 -- Data for Name: user_collection; Type: TABLE DATA; Schema: public; Owner: tpl522_6
 --
 
-INSERT INTO public.user_collection (id, name, manacost, originaltext, cmc, imgurl, user_id) VALUES ('"f6d90436-54ff-57a8-a056-9173159788d4"', 'Elesh Norn, Grand Cenobite', '{5}{W}{W}', '"Vigilance\nOther creatures you control get +2/+2.\nCreatures your opponents control get -2/-2."', '7', 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=547444&type=card', '3');
-INSERT INTO public.user_collection (id, name, manacost, originaltext, cmc, imgurl, user_id) VALUES ('b62db1a4-630f-56d5-bd12-ed41271c6e0f', 'Aspect of Wolf', '{1}{G}', 'Target creature''s power and toughness are increased by half the number of forests you have in play, rounding down for power and up for toughness.', '2', NULL, '3');
+INSERT INTO public.user_collection (id, name, manacost, originaltext, cmc, imageurl, user_id) VALUES ('"f6d90436-54ff-57a8-a056-9173159788d4"', 'Elesh Norn, Grand Cenobite', '{5}{W}{W}', '"Vigilance\nOther creatures you control get +2/+2.\nCreatures your opponents control get -2/-2."', '7', 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=547444&type=card', '3');
+INSERT INTO public.user_collection (id, name, manacost, originaltext, cmc, imageurl, user_id) VALUES ('b62db1a4-630f-56d5-bd12-ed41271c6e0f', 'Aspect of Wolf', '{1}{G}', 'Target creature''s power and toughness are increased by half the number of forests you have in play, rounding down for power and up for toughness.', '2', NULL, '3');
 
 
 --

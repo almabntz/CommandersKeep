@@ -15,7 +15,7 @@ CREATE TABLE public.user_collection (
     manacost text,
     originaltext text,
     cmc text,
-    imgurl text,
+    imageurl text,
     user_id text
 );
 
