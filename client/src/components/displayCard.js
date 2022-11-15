@@ -23,9 +23,6 @@ const DisplayCard = ({ card }) => {
       <div className="card-horizontal">
         <div className="img-square-wrapper">
           <img src={card.imageUrl} alt="image" className="card-img" />
-          {/* {card.imageUrl && (
-            <img src={card.imageUrl} alt="image" className="card-img" />
-          )} */}
         </div>
         <div className="card-body">
           <h2 className="card-title">{card.name}</h2>
@@ -45,7 +42,9 @@ const DisplayCard = ({ card }) => {
           <b>legalities:</b> {JSON.stringify(card.legalities)}
         </p>
       </div>
-      <button className="button-card" onClick={(e) => addNewCard(e)}>+ My Collection</button>
+      <button className="button-card" onClick={(e) => addNewCard(e)}>
+        + My Collection
+      </button>
     </div>
   );
 };

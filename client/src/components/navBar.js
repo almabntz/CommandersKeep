@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.jpg";
+import logo from "./logo.png";
 //import Profile from "./profile";
 import Auth0NavBar from "../auth/nav-bar";
 

@@ -31,11 +31,13 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
             <b>Converted Mana Cost:</b> {JSON.stringify(displayCollection.cmc)}
           </p>
         </div>
+        <div>
         <button
           className="button-card"
           value={displayCollection.id}
           onClick={(e) => handleDeleteCollection(e, displayCollection.id)}
         >Delete</button>
+        </div>
       </div>
       <div className="card-footer w-100 text-muted"></div>
     </div>
