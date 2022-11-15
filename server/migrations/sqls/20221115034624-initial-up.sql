@@ -19,4 +19,3 @@ CREATE TABLE public.user_collection (
     user_id text
 );
 
-SELECT pg_catalog.setval('public.reg_user_id_seq', 4, true);
