@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "concurrently 'npm start' 'cd .. && cd client && npm start' ",
-    "start": "nodemon index.js",
-    "server": "nodemon index.js"
+    "start": "nodemon server.js",
+    "server": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
