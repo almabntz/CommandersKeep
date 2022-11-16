@@ -11,8 +11,8 @@ import Archive from "./pages/archive";
 import Auth0NavBar from "./auth/nav-bar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./auth/loading";
-import Profile from "./components/profile"; 
-//import { Route, Routes, Link } from 'react-router-dom';
+//import Profile from "./components/profile";
+//import banner from "./components/banner.jpeg";
 
 function App() {
   const [view, setView] = useState("myCollection");
@@ -29,17 +29,19 @@ function App() {
     //Ternari statement that determined view of signed in VS signed out
     <div id="app" className="d-flex flex-column h-100">
       {!user ? (
-        <>
+        <div>
           <Auth0NavBar />
-          <span>Greetings, Planeswalker</span>{" "}
-        </>
+          <span>Greetings, Planeswalker</span>
+        </div>
       ) : (
-        <>
+        <div>
+         
           <NavBar setView={setView} user={user} />
           {view === "myCollection" && <Collection />}
           {view === "myDecks" && <Decks />}
           {view === "archive" && <Archive />}
-        </>
+        
+        </div>
       )}
       ;
     </div>

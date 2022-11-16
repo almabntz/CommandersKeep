@@ -8,7 +8,13 @@ App {
 /*This is staking my links next to each other and 
 keeping them from being on top of each other*/
 .navbar-container{
-  overflow: hidden; /* will contain if #first is longer than #second */
+  overflow: hidden; 
+/* border-image-repeat: stretch; */
+/* background-image: url("./components/banner.jpeg"); */
+/* object-fit:scale-down; */
+padding-top: 200px;
+/* object-position: 30px 10%; */
+/* width: 940px; */
   
 }
 
@@ -33,24 +39,17 @@ its centering my links and spacing them from each other*/
  font-family:'Lucida Sans', 'Lucida Sans Regular';
 }
 
-.nav-img{
-  width: 150px;
-  float:left;
-  padding: 40px;
-  /* border-radius: 200px; */
-}
+
 
 /*this is wrapped around my navbar div
 its creating my nav bars box*/
 .wrap {
-background-color: #F4E4E4; 
-/* max-width: 1080px; */
-viewport-fit:inherit;
-
- /* padding-left: 300px;
- padding-right: 300px;
- padding-bottom: 10px;
- padding-top: 10px; */
+background-image: url("./components/banner.jpeg");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+padding-top: 100px;
+/* padding-bottom:100px; */
 }
 
 

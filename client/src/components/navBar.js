@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./logo.png";
+//import logo from "./logo.png";
 //import Profile from "./profile";
 import Auth0NavBar from "../auth/nav-bar";
 
@@ -12,23 +12,23 @@ const NavBar = ({ setView }) => {
 
     <div className="wrap">
       <div className="navbar-container">
+      <div className="logo">
+         WORDS
+        </div>
         <div className="user-wrap"></div>
 
-        <div className="logo">
-          <img className="nav-img" src={logo} />
-          <h1>Commanders Keep</h1>
-        </div>
+        <div className="nav-links">
+          <div className="navbar-btn" onClick={() => setView("myCollection")}>
+            <h2>My Collection</h2>
+          </div>
 
-        <div className="navbar-btn" onClick={() => setView("myCollection")}>
-          <h2>My Collection</h2>
-        </div>
+          <div className="navbar-btn" onClick={() => setView("myDecks")}>
+            <h2>My Decks</h2>
+          </div>
 
-        <div className="navbar-btn" onClick={() => setView("myDecks")}>
-          <h2>My Decks</h2>
-        </div>
-
-        <div className="navbar-btn" onClick={() => setView("archive")}>
-          <h2>Archive</h2>
+          <div className="navbar-btn" onClick={() => setView("archive")}>
+            <h2>Archive</h2>
+          </div>
         </div>
 
         <div>
@@ -40,3 +40,5 @@ const NavBar = ({ setView }) => {
 };
 
 export default NavBar;
+
+//<img className="nav-img" src={logo} />
