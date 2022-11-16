@@ -1,7 +1,5 @@
 import React from "react";
 import "./displayCard.css";
-
-//new code
 import { Card, StyledBody, StyledAction } from "baseui/card";
 import { Button } from "baseui/button";
 
@@ -30,7 +28,7 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
           overrides={{ BaseButton: { style: { width: "100%" } } }}
           onClick={(e) => handleDeleteCollection(e, displayCollection.id)}
         >
-          Delete{" "}
+          Delete
         </Button>
       </StyledAction>
     </Card>

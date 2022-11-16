@@ -12,16 +12,11 @@ import Auth0NavBar from "./auth/nav-bar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "./auth/loading";
 //import Profile from "./components/profile";
-//import banner from "./components/banner.jpeg";
+//style imports
+import { Client as Styletron } from "styletron-engine-atomic";
+import { Provider as StyletronProvider } from "styletron-react";
+import { LightTheme, BaseProvider, styled } from "baseui";
 
-//TEST NEW CODE
-import { Client as Styletron } from 'styletron-engine-atomic';
-import { Provider as StyletronProvider } from 'styletron-react';
-import { LightTheme, BaseProvider, styled } from 'baseui';
-import { StatefulInput } from 'baseui/input';
-//NEW CODE
-
-//new code
 const engine = new Styletron();
 
 function App() {
@@ -31,47 +26,31 @@ function App() {
   const { user } = useAuth0();
   // console.log(user);
 
-
-
   if (isLoading) {
     return <Loading />;
   }
 
   return (
-    //Nav Bar Code
-    //Ternari statement that determined view of signed in VS signed out
-   
-   //new code
-<StyletronProvider value={engine}> 
+    <StyletronProvider value={engine}>
       <BaseProvider theme={LightTheme}>
-
-      <StatefulInput />
-  
-    
-
-    
-    <div id="app" className="d-flex flex-column h-100">
-      {!user ? (
-        <div>
-          <Auth0NavBar />
-          <span>Greetings, Planeswalker</span>
+        <div id="app" className="d-flex flex-column h-100">
+          {!user ? (
+            <div>
+              <Auth0NavBar />
+              <span>Greetings, Planeswalker</span>
+            </div>
+          ) : (
+            <div>
+              <NavBar setView={setView} user={user} />
+              {view === "myCollection" && <Collection />}
+              {view === "myDecks" && <Decks />}
+              {view === "archive" && <Archive />}
+            </div>
+          )}
+          ;
         </div>
-      ) : (
-        <div>
-         
-          <NavBar setView={setView} user={user} />
-          {view === "myCollection" && <Collection />}
-          {view === "myDecks" && <Decks />}
-          {view === "archive" && <Archive />}
-        
-        </div>
-      )}
-      ;
-    </div>
-
-
-    </BaseProvider>
-    </StyletronProvider> //new code
+      </BaseProvider>
+    </StyletronProvider>
   );
 }
 
