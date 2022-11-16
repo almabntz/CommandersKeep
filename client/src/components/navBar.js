@@ -15,7 +15,6 @@ const NavBar = ({ setView }) => {
         <img className="logo" src={logo} />
       </div>
       <div className="navbar-container">
-        Commanders keep
         <div className="user-wrap"></div>
         <div className="nav-links">
           <div className="navbar-btn" onClick={() => setView("myCollection")}>
@@ -34,7 +33,6 @@ const NavBar = ({ setView }) => {
             <Auth0NavBar />
           </div>
         </div>
-        <div></div>
       </div>
     </div>
   );

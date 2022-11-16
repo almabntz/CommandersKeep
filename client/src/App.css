@@ -1,8 +1,5 @@
 App {
   text-align: center;
-  background-color: #bc2525;
-  color: #a17e7e;
- 
 }
 
 /*This is staking my links next to each other and 
@@ -50,7 +47,6 @@ background-image: url("./components/banner.jpeg");
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
-background-color: aqua;
 }
 
 
@@ -89,5 +85,6 @@ place-items: center;
 }
 
 .log-out{
-  float:right
+  float:right;
+  padding-right: 100px;
 }
