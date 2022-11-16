@@ -14,12 +14,25 @@ import Loading from "./auth/loading";
 //import Profile from "./components/profile";
 //import banner from "./components/banner.jpeg";
 
+//TEST NEW CODE
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { LightTheme, BaseProvider, styled } from 'baseui';
+import { StatefulInput } from 'baseui/input';
+//NEW CODE
+
+//new code
+const engine = new Styletron();
+
 function App() {
   const [view, setView] = useState("myCollection");
   //auth0
   const { isLoading } = useAuth0();
   const { user } = useAuth0();
   // console.log(user);
+
+
+
   if (isLoading) {
     return <Loading />;
   }
@@ -27,6 +40,16 @@ function App() {
   return (
     //Nav Bar Code
     //Ternari statement that determined view of signed in VS signed out
+   
+   //new code
+<StyletronProvider value={engine}> 
+      <BaseProvider theme={LightTheme}>
+
+      <StatefulInput />
+  
+    
+
+    
     <div id="app" className="d-flex flex-column h-100">
       {!user ? (
         <div>
@@ -45,6 +68,10 @@ function App() {
       )}
       ;
     </div>
+
+
+    </BaseProvider>
+    </StyletronProvider> //new code
   );
 }
 
