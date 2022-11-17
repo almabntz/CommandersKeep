@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, StyledBody, StyledAction } from "baseui/card";
 import { Button } from "baseui/button";
 
 const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
+  const [updateDeck, setUpdateDeck] = useState([]);
+   const addDeckNew = async (e) => {
+    e.preventDefault();
+    console.log(updateDeck);
+      await fetch("/user_deck", {
+      method: "POST",
+      headers: { 
+        Accept: "application/json", "Content-Type": "application/json",},
+      body: JSON.stringify(updateDeck),
+    });
+    
+    console.log(updateDeck, "this is saved display card");
+  };
+
+  //delete logic
   const handleDeleteCollection = (e, id) => {
     e.preventDefault();
     deleteCard(id);
   };
+
   return (
     <Card
       overrides={{ Root: { style: { width: "400px" } } }}
@@ -24,12 +40,15 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
       </StyledBody>
       <StyledAction>
         <Button
-          overrides={{ BaseButton: { style: { width: "30%",margin: '10px' } } }}
+          overrides={{
+            BaseButton: { style: { width: "30%" } },
+          }}
           onClick={(e) => handleDeleteCollection(e, displayCollection.id)}
         >
           Delete
         </Button>
-        <Button>+ My Deck</Button>
+        <Button
+        onClick={(e) => addDeckNew(e)}>+ My Deck</Button>
       </StyledAction>
     </Card>
   );
