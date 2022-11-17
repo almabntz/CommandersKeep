@@ -16,7 +16,7 @@ import Loading from "./auth/loading";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider, styled } from "baseui";
-//import anilogo from "./anilogo.mp4";
+import logo2 from "./logo2.png";
 
 const engine = new Styletron();
 
@@ -37,10 +37,12 @@ function App() {
         <div id="app" className="d-flex flex-column h-100">
           {!user ? (
             <div className="landing-page-container">
-              <div className="log-in">
-                test words
+              <div>
+             <img className="logo" src={logo2} />
+             <h1>Greetings, Planeswalker</h1>
               <Auth0NavBar />
-              <span>Greetings, Planeswalker</span>
+              </div>
+              <div className="log-in"> 
               </div>
             </div>
           ) : (
