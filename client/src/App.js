@@ -22,8 +22,8 @@ const engine = new Styletron();
 function App() {
   const [view, setView] = useState("myCollection");
   //auth0
-  const { isLoading } = useAuth0();
-  const { user } = useAuth0();
+  const { isLoading, user } = useAuth0();
+  
   // console.log(user);
 
   if (isLoading) {

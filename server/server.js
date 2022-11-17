@@ -54,7 +54,7 @@ app.post("/user_collection", async (req, res) => {
     originalText: req.body.originalText,
     cmc: req.body.cmc,
     imageUrl: req.body.imageUrl,
-    // user_id: req.body.user_id
+    user_id: req.body.user_id
   };
   console.log(updateCollection);
 
@@ -137,6 +137,7 @@ app.post("/api/users", cors(), async (req, res) => {
   const resultsEmail = await db.query(queryEmail, valuesEmail);
   if (resultsEmail.length > 0) {
     console.log(`Welcome back, Planeswalker ${resultsEmail.firstname} !`);
+    res.json({user_id:resultsEmail[0].id}) //current or new user is found
   } else {
     //Values that are being inserted into table if new user
     const query =
@@ -148,6 +149,7 @@ app.post("/api/users", cors(), async (req, res) => {
       newUser.sub,
     ];
     const result = await db.query(query, values);
+    res.json({user_id:result[0].id}) //adds user to db
   }
 });
 
