@@ -170,7 +170,38 @@ app.get("/user_deck", async function (req, res, next) {
   }
 });
 
+//post user_deck
+app.post("/user_deck", async (req, res) => {
+  const updateDeck = {
+    user_id: req.body.user_id,
+    name: req.body.name,
+    manaCost: req.body.manacost,
+    originalText: req.body.originaltext,
+    cmc: req.body.cmc,
+    imageUrl: req.body.imageurl,
+    id: req.body.id,
+  };
+  console.log(updateDeck);
 
+  try {
+    const insertDeck = await db.any(
+      "INSERT INTO user_deck(user_id, name, manacost, originaltext, cmc, imageurl,id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [
+        updateDeck.user_id,
+        updateDeck.name,
+        updateDeck.manacost,
+        updateDeck.originaltext,
+        updateDeck.cmc,
+        updateDeck.imageurl,
+        updateDeck.id,
+      ]
+    );
+    console.log(insertDeck);
+    res.send(insertDeck);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
 
 //----------end user_deck------------
 
