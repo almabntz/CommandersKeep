@@ -1,5 +1,6 @@
 App {
   text-align: center;
+
 }
 
 /*This is staking my links next to each other and 
@@ -49,10 +50,6 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
-
-
-
-
 .searchBar {
 float:right;
 place-items: center;
@@ -87,4 +84,9 @@ place-items: center;
 .log-out{
   float:right;
   padding-right: 100px;
+}
+
+.landing-page-container{
+  
+  background-image: url("./components/logo.png");
 }

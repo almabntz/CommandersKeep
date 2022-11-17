@@ -32,6 +32,15 @@ function SearchBar({ placeholder, data, onChange }) {
     setWordEntered("");
   };
 
+  //NEW CODE
+  const suggestionsClick = (value) => {
+    console.log(value, "ive been CLICKED!")
+    const newSuggestionSearch =value.name
+    setWordEntered(newSuggestionSearch)
+    setFilteredData([]);
+  }
+
+
   return (
     <div className="search">
       <div className="searchInputs">
@@ -50,11 +59,11 @@ function SearchBar({ placeholder, data, onChange }) {
         </div>
       </div>
       {filteredData.length !== 0 && (
-        <div className="dataResults">
-          {filteredData.slice(0, 5).map((value, key) => {
+        <div className="dataResults" >
+          {filteredData.slice(0, 5).map((value, index) => {
             return (
-              <div>
-                <p>{value.name}</p>
+              <div key={"suggestion-index" + index} >
+                <p onClick={ () => {suggestionsClick(value)} }>{value.name}</p>
               </div>
             );
           })}
@@ -65,3 +74,9 @@ function SearchBar({ placeholder, data, onChange }) {
 }
 
 export default SearchBar;
+ 
+//  I want to create an onclick event with the filtered data thats being returned in searchbar
+// this will be sending data from child to parent. 
+// if a user clicks on this suggested data, i want it to autofill the searchterm to 
+// he onclick search term. 
+// because of this desired outcome, the onclick event should utilize the useState useWordEnttered 

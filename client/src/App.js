@@ -35,9 +35,11 @@ function App() {
       <BaseProvider theme={LightTheme}>
         <div id="app" className="d-flex flex-column h-100">
           {!user ? (
-            <div>
+            <div className="landing-page-container">
+              <div>
               <Auth0NavBar />
               <span>Greetings, Planeswalker</span>
+              </div>
             </div>
           ) : (
             <div>
