@@ -1,6 +1,13 @@
-App {
-  text-align: center;
-
+.landing-page-container {
+text-align: center;
+background-image: url("./components/landing.jpg");
+position: absolute;
+top: 0px; 
+bottom: 0px; 
+width: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 }
 
 /*This is staking my links next to each other and 
@@ -86,7 +93,6 @@ place-items: center;
   padding-right: 100px;
 }
 
-.landing-page-container{
-  
-  background-image: url("./components/logo.png");
+.log-in{
+  padding-top: 35%;
 }

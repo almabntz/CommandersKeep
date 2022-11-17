@@ -16,6 +16,7 @@ import Loading from "./auth/loading";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider, styled } from "baseui";
+import anilogo from "./anilogo.mp4";
 
 const engine = new Styletron();
 
@@ -36,7 +37,8 @@ function App() {
         <div id="app" className="d-flex flex-column h-100">
           {!user ? (
             <div className="landing-page-container">
-              <div>
+              <div className="log-in">
+                test words
               <Auth0NavBar />
               <span>Greetings, Planeswalker</span>
               </div>
@@ -57,3 +59,4 @@ function App() {
 }
 
 export default App;
+//<video src={anilogo} autoplay="true" >
