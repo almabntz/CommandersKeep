@@ -24,11 +24,12 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
       </StyledBody>
       <StyledAction>
         <Button
-          overrides={{ BaseButton: { style: { width: "100%" } } }}
+          overrides={{ BaseButton: { style: { width: "30%",margin: '10px' } } }}
           onClick={(e) => handleDeleteCollection(e, displayCollection.id)}
         >
           Delete
         </Button>
+        <Button>+ My Deck</Button>
       </StyledAction>
     </Card>
   );
