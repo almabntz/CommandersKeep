@@ -1,11 +1,11 @@
 import React from "react";
 
-const DeckDisplayCard = () => {
+const DeckDisplayCard = ({displayDeck}) => {
 //logic here
 
 return(
     <div>
-        display deck things here
+        
     </div>
 )
 }

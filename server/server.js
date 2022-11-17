@@ -31,7 +31,7 @@ const pgp = pgPromise({});
 //this is porting over my whole database
 const db = pgp("postgres://localhost:5432/com_keep");
 
-
+//---------------------- USER COLLECTION-----------------------------------------
 
 //GET from user_collection
 app.get("/user_collection", async function (req, res, next) {
@@ -89,8 +89,9 @@ app.delete("/user_collection/:id", async (req, res) => {
     return res.status(400).json({ e });
   }
 });
+//----------------------END USER COLLECTION-----------------------------------------
 
-//GET request for MTG api
+//-------------------GET request for MTG api
 app.get("api/cards", cors(), async (req, res) => {
   const url = `https://api.magicthegathering.io/v1/cards?name=${searchTerm}`;
   try {
@@ -110,6 +111,8 @@ app.get("/", (request, response) => {
   //response.json({ info: "hello from my backend" });
   response.sendFile(path.join(REACT_BUILD_DIR, 'index.html'));
 });
+
+//----------------------USERS-----------------------------------------
 
 // GET from users
 app.get("/users", async function (req, res, next) {
@@ -152,6 +155,24 @@ app.post("/api/users", cors(), async (req, res) => {
     res.json({user_id:result[0].id}) //adds user to db
   }
 });
+//----------------------END USERS-----------------------------------------
+
+//--------------------------------- user_deck------------------------------
+//GET user_deck
+app.get("/user_deck", async function (req, res, next) {
+  try {
+    const userDeck = await db.any("SELECT * FROM user_deck", [
+      true,
+    ]);
+    res.send(userDeck);
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+
+
+
+//----------end user_deck------------
 
 app.listen(PORT, () =>
   console.log(`Hello from backend! server is running on port ${PORT}`)

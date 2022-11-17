@@ -4,6 +4,7 @@ import DeckDisplayCard from '../components/deckDisplayCard';
 const Decks = () => {
 const [myDeck, setMyDeck] = useState([]); //this will hold cards within the deck
     //logic goes here
+//get request from DB    
 const getDeck = async () => {
     const response = await fetch("/user_deck");
     const storedDeck = await response.json();
@@ -13,11 +14,19 @@ const getDeck = async () => {
     getDeck();
   }, [myDeck]);
 
+  //delete logic to follow later
+
     return (
         <div>
             <div>
-            <h1>This is my Decks</h1>
-            <DeckDisplayCard />
+                {myDeck.map((myDeckCards,i) => {
+                    return(
+                        <DeckDisplayCard 
+                        key={i}
+                        displayDeck={myDeckCards}
+                        />
+                    );
+                })}
             </div>
             
         </div>
