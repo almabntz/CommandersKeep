@@ -37,12 +37,10 @@ function App() {
         <div id="app" className="d-flex flex-column h-100">
           {!user ? (
             <div className="landing-page-container">
-              <div>
+              <div className="log-in">
              <img className="logo" src={logo2} />
              <h1>Greetings, Planeswalker</h1>
               <Auth0NavBar />
-              </div>
-              <div className="log-in"> 
               </div>
             </div>
           ) : (

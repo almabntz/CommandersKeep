@@ -39,7 +39,7 @@ its centering my links and spacing them from each other*/
 .logo-wrap{
  text-align: left;
  width: 100px;
- /* font-size: xx-large; */
+
  font-family:'Lucida Sans', 'Lucida Sans Regular';
  /* background-color: blue; */
  margin-left: 100px;
@@ -97,5 +97,9 @@ padding-left: 20px;
 }
 
 .log-in{
+  color:azure;
+  font-family:'Lucida Sans', 'Lucida Sans Regular';
+   font-size: xx-large;
+   text-shadow: 2px 2px #4c4a4a;
   /* padding-top: 35%; */
 }
