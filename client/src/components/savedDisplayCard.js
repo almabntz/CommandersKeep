@@ -9,7 +9,7 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
   };
   return (
     <Card
-      overrides={{ Root: { style: { width: "328px" } } }}
+      overrides={{ Root: { style: { width: "500px" } } }}
       headerImage={displayCollection.imageurl}
       title={displayCollection.name}
     >
