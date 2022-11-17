@@ -60,6 +60,9 @@ background-size: cover;
 .searchBar {
 float:right;
 place-items: center;
+/* float:left; */
+padding-right: 100px;
+padding-left: 20px;
 }
 
 .display-card {

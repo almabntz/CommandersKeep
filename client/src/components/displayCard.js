@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./displayCard.css";
-import { Card, StyledBody, StyledAction} from "baseui/card";
-import { Button } from "baseui/button";
+import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
 
 const DisplayCard = ({ card }) => {
   const [updateCollection, setUpdateCollection] = useState([]);
@@ -21,14 +20,12 @@ const DisplayCard = ({ card }) => {
   };
 
   return (
-    <Card
-      overrides={{ Root: { style: { width: "900px" } } }}
-      headerImage={card.imageUrl}
-      title={card.name}
-    >
-      <StyledBody>
-        <p className="card-text">
-          <b>Mana Cost:</b> {JSON.stringify(card.manaCost)}
+    <div>
+    <MessageCard
+      heading={card.name}
+      paragraph={
+        <div>
+          <b>Mana Cost:</b>{JSON.stringify(card.manaCost)}
           <br></br>
           <br></br>
           <b>Flavor Text:</b> {JSON.stringify(card.text)}
@@ -36,19 +33,24 @@ const DisplayCard = ({ card }) => {
           <br></br>
           <b>Converted Mana Cost:</b> {JSON.stringify(card.cmc)}
           <br></br>
-        <b>legalities:</b> {JSON.stringify(card.legalities)}
-        </p>
-        
-      </StyledBody>
-      <StyledAction>
-        <Button
-          overrides={{ BaseButton: { style: { width: "100%" } } }}
-          onClick={(e) => addNewCard(e)}
-        >
-          + My Collection
-        </Button>
-      </StyledAction>
-    </Card>
+          <b>legalities:</b> {JSON.stringify(card.legalities)}
+        </div>
+      }
+      buttonLabel="+ My Collection"
+      onClick={(e) => addNewCard(e) && alert('ADDED TO MY COLLECTION')}
+      //onClick={()=>alert('ADDED')}
+      image={{
+        src:card.imageUrl, 
+        layout: IMAGE_LAYOUT.trailing,
+        ariaLabel: 'MTG Card image',
+      }}
+      //overrides={{Root: {style: {marginBottom: '30px'}}}}
+      overrides={{
+        Image: {
+          style: { height: "310px", width: "250px" }
+        }}}
+    />
+  </div>
   );
 };
 

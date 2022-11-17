@@ -16,7 +16,7 @@ import Loading from "./auth/loading";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { LightTheme, BaseProvider, styled } from "baseui";
-import anilogo from "./anilogo.mp4";
+//import anilogo from "./anilogo.mp4";
 
 const engine = new Styletron();
 
