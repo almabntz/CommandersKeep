@@ -51,7 +51,6 @@ function App() {
               {view === "archive" && <Archive />}
             </div>
           )}
-          ;
         </div>
       </BaseProvider>
     </StyletronProvider>

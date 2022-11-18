@@ -99,7 +99,7 @@ app.post("/user_collection", async (req, res) => {
   }
 });
 
-//DELETE request for user collection
+//DELETE request for user_collection
 app.delete("/user_collection/:id", async (req, res) => {
   const cardId = req.params.id;
   console.log(cardId);
