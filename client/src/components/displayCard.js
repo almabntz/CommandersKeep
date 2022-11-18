@@ -16,8 +16,8 @@ const DisplayCard = ({ card }) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+         //sending card object inside of the card key 
       body: JSON.stringify({card, sub:user.sub}),
-      //sending card object inside of the card key 
     });
     console.log(card, "this is card");
   };
