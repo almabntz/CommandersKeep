@@ -239,6 +239,17 @@ app.post("/user_deck", async (req, res) => {
   }
 });
 
+//DELETE user_deck
+app.delete("/user_deck/:id", async (req, res) => {
+  const cardId = req.params.id;
+  console.log(cardId);
+  try {
+    await db.many("DELETE FROM user_deck WHERE id=$1", [cardId]);
+    res.send({ status: "success" });
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
 //----------end user_deck------------
 
 app.listen(PORT, () =>

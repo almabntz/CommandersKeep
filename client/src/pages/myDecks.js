@@ -17,6 +17,15 @@ const getDeck = async () => {
   }, [myDeck]);
 
   //delete logic to follow later
+  const deleteDeck = (deleteId) => {
+    return fetch(`user_deck/${deleteId}`,{
+        method: "DELETE",
+    }).then((response) => {
+        if(response.ok) {
+            getDeck();
+        }
+    })
+  };
 
     return (
         <div>
@@ -26,6 +35,7 @@ const getDeck = async () => {
                         <DeckDisplayCard 
                         key={i}
                         displayDeck={myDeckCards}
+                        deleteDeck={deleteDeck}
                         />
                     );
                 })}

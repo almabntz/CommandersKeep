@@ -2,8 +2,12 @@ import React from "react";
 import { Card, StyledBody, StyledAction } from "baseui/card";
 import { Button } from "baseui/button";
 
-const DeckDisplayCard = ({displayDeck}) => {
-//logic here
+const DeckDisplayCard = ({displayDeck, deleteDeck}) => {
+//const [removeDeck, setRemoveDeck] = useState([]);
+const handleDeleteDeck = (e, id) => {
+  e.preventDefault();
+  deleteDeck(id)
+};
 
 return(
 <Card
@@ -25,8 +29,7 @@ title={displayDeck.name}
     overrides={{
       BaseButton: { style: { width: "30%" } },
     }}
-    //onClick={(e) => handleDeleteCollection(e, displayDeck.id)}
-     //onClick={(e) => addNewCard(e) && alert('ADDED TO MY COLLECTION')}
+    onClick={(e) => handleDeleteDeck(e, displayDeck.id ) && alert('Deleted from Deck')}
   >
     Delete
   </Button>
