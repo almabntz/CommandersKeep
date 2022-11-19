@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SavedDisplayCard from "../components/savedDisplayCard";
+import { useAuth0 } from "@auth0/auth0-react";
 /*
  *   Parent: Collection
  *    props displayCollection and deleteCard is being passed from
@@ -10,9 +11,10 @@ import SavedDisplayCard from "../components/savedDisplayCard";
  */
 const Collection = ({ sendToCollection, currentCollection }) => {
   const [myCollection, setMyCollection] = useState([]); //This will hold users collection of cards
+  const { user } = useAuth0();
   //fetch from DB, Get request
   const getCollection = async () => {
-    const response = await fetch("/user_collection");
+    const response = await fetch(`/user_collection?sub=${user.sub}`);
     const storedCollection = await response.json();
     setMyCollection(storedCollection);
   };
@@ -33,7 +35,13 @@ const Collection = ({ sendToCollection, currentCollection }) => {
 
   return (
     <div>
-      <div style={{"display": "grid", "gridTemplateColumns": "1fr 1fr 1fr 1fr", "gridRowGap": "20px"}} >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridRowGap: "20px",
+        }}
+      >
         {myCollection.map((myCards, i) => {
           return (
             <SavedDisplayCard
