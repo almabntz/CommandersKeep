@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DisplayCard = ({ card }) => {
+  const {user} = useAuth0();
   const [updateCollection, setUpdateCollection] = useState([]);
   const addNewCard = async (e) => {
     e.preventDefault();
@@ -13,7 +15,8 @@ const DisplayCard = ({ card }) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(card),
+         //sending card object inside of the card key 
+      body: JSON.stringify({card, sub:user.sub}),
     });
     console.log(card, "this is card");
   };

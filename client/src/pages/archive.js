@@ -53,11 +53,13 @@ const Archive = () => {
   }, [searchTerm]);
 
   return (
-    <div>
+    <div className="page-msg">
       <h1>Greetings, Planeswalker!</h1>
       <h2>
-        Welcome to Commanders Keep complete card archive. Here you can browse
-        for all cards exclusively by name. Please make any selections necessary
+        Welcome to Commanders Keep card archive. Here you can browse
+        all cards exclusively by name. 
+        <br></br>
+        Please make any selections necessary
         to update your collection, happy archiving!
       </h2>
       <div className="searchBar">
