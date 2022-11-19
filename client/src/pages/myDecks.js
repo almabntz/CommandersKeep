@@ -18,7 +18,7 @@ const getDeck = async () => {
 
     return (
         <div>
-            <div>
+            <div style={{"display": "grid", "gridTemplateColumns": "1fr 1fr 1fr 1fr", "gridRowGap": "20px"}} >
                 {myDeck.map((myDeckCards,i) => {
                     return(
                         <DeckDisplayCard 

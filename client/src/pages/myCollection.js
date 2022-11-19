@@ -43,7 +43,6 @@ const Collection = ({ sendToCollection, currentCollection }) => {
             />
           );
         })}
-        This is my collection
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./displayCard.css";
 import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
 
 const DisplayCard = ({ card }) => {
