@@ -204,10 +204,10 @@ app.post("/user_deck", async (req, res) => {
   const updateDeck = {
     name: req.body.displayCollection.name,
     manacost: req.body.displayCollection.manacost,
-    originaltext: req.body.originaltext,
+    originaltext: req.body.displayCollection.originaltext,
     cmc: req.body.displayCollection.cmc,
     imageurl: req.body.displayCollection.imageurl,
-    id: req.body.displayCollection.id,
+    card_id: req.body.displayCollection.id,
     sub: req.body.sub,
   };
   console.log(updateDeck);
@@ -220,14 +220,14 @@ app.post("/user_deck", async (req, res) => {
 
     const userIdUnique = convertId[0].user_id;
     const insertDeck = await db.any(
-      "INSERT INTO user_deck(name, manacost, originaltext, cmc, imageurl,id, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      "INSERT INTO user_deck(name, manacost, originaltext, cmc, imageurl,card_id, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       [
         updateDeck.name,
         updateDeck.manacost,
         updateDeck.originaltext,
         updateDeck.cmc,
         updateDeck.imageurl,
-        updateDeck.id,
+        updateDeck.card_id,
         userIdUnique
       ]
     );
