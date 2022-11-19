@@ -175,10 +175,10 @@ app.post("/user_deck", async (req, res) => {
   const updateDeck = {
     user_id: req.body.user_id,
     name: req.body.name,
-    manaCost: req.body.manacost,
-    originalText: req.body.originaltext,
+    manacost: req.body.manacost,
+    originaltext: req.body.originaltext,
     cmc: req.body.cmc,
-    imageUrl: req.body.imageurl,
+    imageurl: req.body.imageurl,
     id: req.body.id,
   };
   console.log(updateDeck);
