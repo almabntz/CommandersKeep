@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Card, StyledBody, StyledAction } from "baseui/card";
 import { Button } from "baseui/button";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
+  const {user} = useAuth0();
   const [updateDeck, setUpdateDeck] = useState([]);
    const addDeckNew = async (e) => {
     e.preventDefault();
@@ -12,7 +14,7 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
       method: "POST",
       headers: { 
         Accept: "application/json", "Content-Type": "application/json",},
-      body: JSON.stringify(displayCollection),
+      body: JSON.stringify({displayCollection, sub:user.sub}),
     });
     
     console.log(displayCollection, "this is saved display card");
