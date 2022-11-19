@@ -186,12 +186,15 @@ app.post("/api/users", cors(), async (req, res) => {
 //--------------------------------- user_deck------------------------------
 //GET user_deck
 app.get("/user_deck", async function (req, res, next) {
+  const userId = await getUserIdFromSub(req.query.sub);
+  console.log(userId);
   try {
-    const userDeck = await db.any("SELECT * FROM user_deck", [
-      true,
-    ]);
+    const userDeck = await db.any("SELECT * FROM user_deck WHERE user_id = $1", 
+    [userId]
+    );
     res.send(userDeck);
   } catch (e) {
+    console.log(e.message)
     return res.status(400).json({ e });
   }
 });

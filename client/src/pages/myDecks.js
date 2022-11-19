@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import DeckDisplayCard from '../components/deckDisplayCard';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Decks = () => {
 const [myDeck, setMyDeck] = useState([]); //this will hold cards within the deck
+const { user } = useAuth0();
     //logic goes here
 //get request from DB    
 const getDeck = async () => {
-    const response = await fetch("/user_deck");
+    const response = await fetch(`/user_deck?sub=${user.sub}`);
     const storedDeck = await response.json();
     setMyDeck(storedDeck);
   };
