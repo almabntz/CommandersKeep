@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import SavedDisplayCard from "../components/savedDisplayCard";
+import { useAuth0 } from "@auth0/auth0-react";
 /*
  *   Parent: Collection
- *    displayCollection is being passed from
+ *    props displayCollection and deleteCard is being passed from
  *    collection to savedDisplayCard
  *
  *    Child: savedDisplayCard
@@ -10,9 +11,10 @@ import SavedDisplayCard from "../components/savedDisplayCard";
  */
 const Collection = ({ sendToCollection, currentCollection }) => {
   const [myCollection, setMyCollection] = useState([]); //This will hold users collection of cards
+  const { user } = useAuth0();
   //fetch from DB, Get request
   const getCollection = async () => {
-    const response = await fetch("/user_collection");
+    const response = await fetch(`/user_collection?sub=${user.sub}`);
     const storedCollection = await response.json();
     setMyCollection(storedCollection);
   };
@@ -20,11 +22,34 @@ const Collection = ({ sendToCollection, currentCollection }) => {
     getCollection();
   }, [myCollection]);
 
+  //Delete handle logic
+  const deleteCard = (deleteCardId) => {
+    return fetch(`user_collection/${deleteCardId}`, {
+      method: "DELETE",
+    }).then((response) => {
+      if (response.ok) {
+        getCollection();
+      }
+    });
+  };
+
   return (
     <div>
-      <div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridRowGap: "20px",
+        }}
+      >
         {myCollection.map((myCards, i) => {
-          return <SavedDisplayCard key={i} displayCollection = {myCards} />;
+          return (
+            <SavedDisplayCard
+              key={i}
+              displayCollection={myCards}
+              deleteCard={deleteCard}
+            />
+          );
         })}
         This is my collection
       </div>

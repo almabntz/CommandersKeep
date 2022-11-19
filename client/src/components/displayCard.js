@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./displayCard.css";
+import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DisplayCard = ({ card }) => {
+  const {user} = useAuth0();
   const [updateCollection, setUpdateCollection] = useState([]);
   const addNewCard = async (e) => {
     e.preventDefault();
@@ -13,40 +16,44 @@ const DisplayCard = ({ card }) => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(card),
+         //sending card object inside of the card key 
+      body: JSON.stringify({card, sub:user.sub}),
     });
     console.log(card, "this is card");
   };
 
   return (
-    <div className="card">
-      <div className="card-horizontal">
-        <div className="img-square-wrapper">
-          <img src={card.imageUrl} alt="image" className="card-img" />
-          {/* {card.imageUrl && (
-            <img src={card.imageUrl} alt="image" className="card-img" />
-          )} */}
-        </div>
-        <div className="card-body">
-          <h2 className="card-title">{card.name}</h2>
-          <p className="card-text">
-            <b>Mana Cost:</b> {JSON.stringify(card.manaCost)}
-            <br></br>
-            <br></br>
-            <b>Flavor Text:</b> {JSON.stringify(card.text)}
-            <br></br>
-            <br></br>
-            <b>Converted Mana Cost:</b> ${JSON.stringify(card.cmc)}
-          </p>
-        </div>
-      </div>
-      <div className="card-footer w-100 text-muted">
-        <p>
+    <div>
+    <MessageCard
+      heading={card.name}
+      paragraph={
+        <div>
+          <b>Mana Cost:</b>{JSON.stringify(card.manaCost)}
+          <br></br>
+          <br></br>
+          <b>Flavor Text:</b> {JSON.stringify(card.text)}
+          <br></br>
+          <br></br>
+          <b>Converted Mana Cost:</b> {JSON.stringify(card.cmc)}
+          <br></br>
           <b>legalities:</b> {JSON.stringify(card.legalities)}
-        </p>
-      </div>
-      <button onClick={(e) => addNewCard(e)}>+ My Collection</button>
-    </div>
+        </div>
+      }
+      buttonLabel="+ My Collection"
+      onClick={(e) => addNewCard(e) && alert('ADDED TO MY COLLECTION')}
+      //onClick={()=>alert('ADDED')}
+      image={{
+        src:card.imageUrl, 
+        layout: IMAGE_LAYOUT.trailing,
+        ariaLabel: 'MTG Card image',
+      }}
+      //overrides={{Root: {style: {marginBottom: '30px'}}}}
+      overrides={{
+        Image: {
+          style: { height: "310px", width: "250px" }
+        }}}
+    />
+  </div>
   );
 };
 
