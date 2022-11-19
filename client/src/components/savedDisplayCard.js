@@ -7,14 +7,15 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
    const addDeckNew = async (e) => {
     e.preventDefault();
     console.log(updateDeck);
+    //POST request to user_deck
       await fetch("/user_deck", {
       method: "POST",
       headers: { 
         Accept: "application/json", "Content-Type": "application/json",},
-      body: JSON.stringify(updateDeck),
+      body: JSON.stringify(displayCollection),
     });
     
-    console.log(updateDeck, "this is saved display card");
+    console.log(displayCollection, "this is saved display card");
   };
 
   //delete logic
