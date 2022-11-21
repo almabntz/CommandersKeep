@@ -1,7 +1,8 @@
 /* Replace with your SQL commands */
 
+
 CREATE TABLE public.users (
-    user_id SERIAL PRIMARY KEY,
+    user_id integer NOT NULL,
     firstname text,
     lastname text,
     email text,
@@ -10,12 +11,24 @@ CREATE TABLE public.users (
 
 
 CREATE TABLE public.user_collection (
-    id SERIAL PRIMARY KEY,
     name text,
     manacost text,
     originaltext text,
     cmc text,
     imageurl text,
-    user_id text
+    card_id text,
+    id integer NOT NULL,
+    user_id integer
 );
 
+
+CREATE TABLE public.user_deck (
+    name text,
+    manacost text,
+    originaltext text,
+    cmc text,
+    imageurl text,
+    id integer NOT NULL,
+    card_id text,
+    user_id integer
+);

@@ -16,13 +16,13 @@ headerImage={displayDeck.imageurl}
 title={displayDeck.name}
 >
 <StyledBody>
-  <b>Mana Cost:</b> {JSON.stringify(displayDeck.manacost)}
+  <b>Mana Cost:</b> {displayDeck.manacost}
   <br></br>
   <br></br>
-  <b>Flavor Text:</b> {JSON.stringify(displayDeck.originaltext)}
+  <b>Flavor Text:</b> {displayDeck.originaltext}
   <br></br>
   <br></br>
-  <b>Converted Mana Cost:</b> {JSON.stringify(displayDeck.cmc)}
+  <b>Converted Mana Cost:</b> {displayDeck.cmc}
 </StyledBody>
 <StyledAction>
   <Button

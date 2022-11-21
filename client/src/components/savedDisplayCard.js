@@ -33,25 +33,25 @@ const SavedDisplayCard = ({ displayCollection, deleteCard }) => {
       title={displayCollection.name}
     >
       <StyledBody>
-        <b>Mana Cost:</b> {JSON.stringify(displayCollection.manacost)}
+        <b>Mana Cost:</b> {displayCollection.manacost}
         <br></br>
         <br></br>
-        <b>Flavor Text:</b> {JSON.stringify(displayCollection.originaltext)}
+        <b>Flavor Text:</b> {displayCollection.originaltext}
         <br></br>
         <br></br>
-        <b>Converted Mana Cost:</b> {JSON.stringify(displayCollection.cmc)}
+        <b>Converted Mana Cost:</b> {displayCollection.cmc}
       </StyledBody>
       <StyledAction>
         <Button
           overrides={{
             BaseButton: { style: { width: "30%" } },
           }}
-          onClick={(e) => handleDeleteCollection(e, displayCollection.id)}
+          onClick={(e) => handleDeleteCollection(e, displayCollection.id) && alert('Deleted from Collection')}
         >
           Delete
         </Button>
         <Button
-        onClick={(e) => addDeckNew(e)}>+ My Deck</Button>
+        onClick={(e) => addDeckNew(e) && alert('Added to Deck')}>+ My Deck</Button>
       </StyledAction>
     </Card>
   );
