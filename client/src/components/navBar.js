@@ -22,7 +22,7 @@ const NavBar = ({ setView }) => {
           </div>
 
           <div className="navbar-btn" onClick={() => setView("myDecks")}>
-            <h2>My Decks</h2>
+            <h2>My Deck</h2>
           </div>
 
           <div className="navbar-btn" onClick={() => setView("archive")}>

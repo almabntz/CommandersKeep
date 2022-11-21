@@ -31,6 +31,9 @@ const pgp = pgPromise({});
 //this is porting over my whole database
 const db = pgp("postgres://localhost:5432/com_keep");
 
+
+//---------------------- USER COLLECTION-----------------------------------------
+
 //const userId = getUserIdFromSub(req.query.sub)
 
 async function getUserIdFromSub(sub) {
@@ -40,6 +43,7 @@ async function getUserIdFromSub(sub) {
   console.log(result);
   return result[0].user_id;
 }
+
 
 //GET from user_collection
 app.get("/user_collection", async function (req, res, next) {
@@ -110,8 +114,9 @@ app.delete("/user_collection/:id", async (req, res) => {
     return res.status(400).json({ e });
   }
 });
+//----------------------END USER COLLECTION-----------------------------------------
 
-//GET request for MTG api
+//-------------------GET request for MTG api
 app.get("api/cards", cors(), async (req, res) => {
   const url = `https://api.magicthegathering.io/v1/cards?name=${searchTerm}`;
   try {
@@ -131,6 +136,8 @@ app.get("/", (request, response) => {
   //response.json({ info: "hello from my backend" });
   response.sendFile(path.join(REACT_BUILD_DIR, "index.html"));
 });
+
+//----------------------USERS-----------------------------------------
 
 // GET from users
 app.get("/users", async function (req, res, next) {
@@ -174,6 +181,76 @@ app.post("/api/users", cors(), async (req, res) => {
     res.json({ user_id: result[0].id }); //adds user to db
   }
 });
+//----------------------END USERS-----------------------------------------
+
+//--------------------------------- user_deck------------------------------
+//GET user_deck
+app.get("/user_deck", async function (req, res, next) {
+  const userId = await getUserIdFromSub(req.query.sub);
+  console.log(userId);
+  try {
+    const userDeck = await db.any("SELECT * FROM user_deck WHERE user_id = $1", 
+    [userId]
+    );
+    res.send(userDeck);
+  } catch (e) {
+    console.log(e.message)
+    return res.status(400).json({ e });
+  }
+});
+
+//post user_deck
+app.post("/user_deck", async (req, res) => {
+  const updateDeck = {
+    name: req.body.displayCollection.name,
+    manacost: req.body.displayCollection.manacost,
+    originaltext: req.body.displayCollection.originaltext,
+    cmc: req.body.displayCollection.cmc,
+    imageurl: req.body.displayCollection.imageurl,
+    card_id: req.body.displayCollection.id,
+    sub: req.body.sub,
+  };
+  console.log(updateDeck);
+
+  try {
+    const convertId = await db.any("SELECT user_id FROM users WHERE sub = $1", [
+      updateDeck.sub,
+    ]);
+    console.log(convertId);
+
+    const userIdUnique = convertId[0].user_id;
+    const insertDeck = await db.any(
+      "INSERT INTO user_deck(name, manacost, originaltext, cmc, imageurl,card_id, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      [
+        updateDeck.name,
+        updateDeck.manacost,
+        updateDeck.originaltext,
+        updateDeck.cmc,
+        updateDeck.imageurl,
+        updateDeck.card_id,
+        userIdUnique
+      ]
+    );
+    console.log(insertDeck);
+    res.send(insertDeck);
+  } catch (e) {
+    console.log(e.message);
+    return res.status(400).json({ e });
+  }
+});
+
+//DELETE user_deck
+app.delete("/user_deck/:id", async (req, res) => {
+  const cardId = req.params.id;
+  console.log(cardId);
+  try {
+    await db.many("DELETE FROM user_deck WHERE id=$1", [cardId]);
+    res.send({ status: "success" });
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
+//----------end user_deck------------
 
 app.listen(PORT, () =>
   console.log(`Hello from backend! server is running on port ${PORT}`)
