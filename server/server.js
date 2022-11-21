@@ -167,6 +167,7 @@ app.post("/api/users", cors(), async (req, res) => {
   if (resultsEmail.length > 0) {
     console.log(`Welcome back, Planeswalker ${resultsEmail.firstname} !`);
     res.json({ user_id: resultsEmail[0].id }); //current or new user is found
+    res.send({ user_id: resultsEmail[0].id }); //HOOKS TEST
   } else {
     //Values that are being inserted into table if new user
     const query =
