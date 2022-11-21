@@ -186,12 +186,15 @@ app.post("/api/users", cors(), async (req, res) => {
 //--------------------------------- user_deck------------------------------
 //GET user_deck
 app.get("/user_deck", async function (req, res, next) {
+  const userId = await getUserIdFromSub(req.query.sub);
+  console.log(userId);
   try {
-    const userDeck = await db.any("SELECT * FROM user_deck", [
-      true,
-    ]);
+    const userDeck = await db.any("SELECT * FROM user_deck WHERE user_id = $1", 
+    [userId]
+    );
     res.send(userDeck);
   } catch (e) {
+    console.log(e.message)
     return res.status(400).json({ e });
   }
 });
@@ -199,36 +202,54 @@ app.get("/user_deck", async function (req, res, next) {
 //post user_deck
 app.post("/user_deck", async (req, res) => {
   const updateDeck = {
-    user_id: req.body.user_id,
-    name: req.body.name,
-    manacost: req.body.manacost,
-    originaltext: req.body.originaltext,
-    cmc: req.body.cmc,
-    imageurl: req.body.imageurl,
-    id: req.body.id,
+    name: req.body.displayCollection.name,
+    manacost: req.body.displayCollection.manacost,
+    originaltext: req.body.displayCollection.originaltext,
+    cmc: req.body.displayCollection.cmc,
+    imageurl: req.body.displayCollection.imageurl,
+    card_id: req.body.displayCollection.id,
+    sub: req.body.sub,
   };
   console.log(updateDeck);
 
   try {
+    const convertId = await db.any("SELECT user_id FROM users WHERE sub = $1", [
+      updateDeck.sub,
+    ]);
+    console.log(convertId);
+
+    const userIdUnique = convertId[0].user_id;
     const insertDeck = await db.any(
-      "INSERT INTO user_deck(user_id, name, manacost, originaltext, cmc, imageurl,id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      "INSERT INTO user_deck(name, manacost, originaltext, cmc, imageurl,card_id, user_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       [
-        updateDeck.user_id,
         updateDeck.name,
         updateDeck.manacost,
         updateDeck.originaltext,
         updateDeck.cmc,
         updateDeck.imageurl,
-        updateDeck.id,
+        updateDeck.card_id,
+        userIdUnique
       ]
     );
     console.log(insertDeck);
     res.send(insertDeck);
   } catch (e) {
+    console.log(e.message);
     return res.status(400).json({ e });
   }
 });
 
+//DELETE user_deck
+app.delete("/user_deck/:id", async (req, res) => {
+  const cardId = req.params.id;
+  console.log(cardId);
+  try {
+    await db.many("DELETE FROM user_deck WHERE id=$1", [cardId]);
+    res.send({ status: "success" });
+  } catch (e) {
+    return res.status(400).json({ e });
+  }
+});
 //----------end user_deck------------
 
 app.listen(PORT, () =>

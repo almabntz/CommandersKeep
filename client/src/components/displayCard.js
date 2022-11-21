@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./displayCard.css";
 import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -28,19 +27,19 @@ const DisplayCard = ({ card }) => {
       heading={card.name}
       paragraph={
         <div>
-          <b>Mana Cost:</b>{JSON.stringify(card.manaCost)}
+          <b>Mana Cost:</b>{card.manaCost}
           <br></br>
           <br></br>
-          <b>Flavor Text:</b> {JSON.stringify(card.text)}
+          <b>Flavor Text:</b> {card.text}
           <br></br>
           <br></br>
-          <b>Converted Mana Cost:</b> {JSON.stringify(card.cmc)}
+          <b>Converted Mana Cost:</b> {card.cmc}
           <br></br>
-          <b>legalities:</b> {JSON.stringify(card.legalities)}
+          {/* <b>legalities:</b> {JSON.stringify(card.legalities)} */}
         </div>
       }
       buttonLabel="+ My Collection"
-      onClick={(e) => addNewCard(e) && alert('ADDED TO MY COLLECTION')}
+      onClick={(e) => addNewCard(e) && alert('Added to Collection')}
       //onClick={()=>alert('ADDED')}
       image={{
         src:card.imageUrl, 
