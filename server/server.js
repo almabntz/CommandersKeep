@@ -29,8 +29,7 @@ app.use(bodyParser.json());
 const pgp = pgPromise({});
 
 //this is porting over my whole database
-const db = pgp("postgres://localhost:5432/com_keep");
-
+const db = pgp(process.env.DATABASE_URL);
 
 //---------------------- USER COLLECTION-----------------------------------------
 
