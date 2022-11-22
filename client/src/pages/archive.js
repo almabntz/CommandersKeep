@@ -69,6 +69,9 @@ const Archive = () => {
           data={filteredAPIData}
           onChange={handleClick} //sends data to the child component Searchbar
         />
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
       <div
         style={{

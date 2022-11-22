@@ -34,7 +34,12 @@ const Collection = ({ sendToCollection, currentCollection }) => {
   };
 
   return (
-    <div>
+    <div className="page-msg">
+           <h1>Collection</h1>
+      <h2>
+        Please make any selections necessary
+        to update your collection, or send cards to your deck.
+      </h2>
       <div
         style={{
           display: "grid",
