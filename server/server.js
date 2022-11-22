@@ -41,9 +41,13 @@ async function getUserIdFromSub(sub) {
     sub,
   ]);
   console.log(result);
-  return result[0].user_id;
+ // return result[0].user_id;
 }
 
+//NEW CODE---------------------------
+app.get('/', (req, res) => {
+  res.sendStatus(200)
+})
 
 //GET from user_collection
 app.get("/user_collection", async function (req, res, next) {
