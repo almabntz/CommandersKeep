@@ -43,7 +43,7 @@ const Collection = ({ sendToCollection, currentCollection }) => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr",
           gridRowGap: "20px",
         }}
       >
