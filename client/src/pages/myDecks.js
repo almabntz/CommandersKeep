@@ -5,9 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Decks = () => {
   const [myDeck, setMyDeck] = useState([]); //this will hold cards within the deck
   const { user } = useAuth0();
-  //logic goes here
   //get request from DB
   const getDeck = async () => {
+    //Added user.sub to swap out auth0 user_id with postgres user_id in backend
     const response = await fetch(`/user_deck?sub=${user.sub}`);
     const storedDeck = await response.json();
     setMyDeck(storedDeck);
@@ -16,7 +16,7 @@ const Decks = () => {
     getDeck();
   }, [myDeck]);
 
-  //delete logic to follow later
+  //delete logic for removing cards from mydeck
   const deleteDeck = (deleteId) => {
     return fetch(`user_deck/${deleteId}`, {
       method: "DELETE",
@@ -30,10 +30,7 @@ const Decks = () => {
   return (
     <div className="page-msg">
       <h1>Deck</h1>
-      <h2>
-        Please make any selections necessary to update your deck.
-      </h2>
-
+      <h2>Please make any selections necessary to update your deck.</h2>
       <div
         style={{
           display: "grid",
