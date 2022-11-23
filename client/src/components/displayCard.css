@@ -1,5 +1,5 @@
 .card{
-    background-color: cornflowerblue;
+    background-color:grey;
     padding: 10px;
     margin-left: 10% ;
     margin-right: 20%;
@@ -31,6 +31,10 @@
    background-color: aquamarine;
   }
 
-  .card-add-button{
+  .button-card{
     float:right;
+  }
+
+  .card-text  p{
+   float:right
   }

@@ -1,44 +1,59 @@
-import React from "react";
-import "./displayCard.css";
+import React, { useState } from "react";
+import {MessageCard, IMAGE_LAYOUT} from 'baseui/message-card';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const DisplayCard = ({ card }) => {
-  // const onClick () => {}
-  //THIS WILL COME LATER AND WILL PASS DATA TO MYCOLLECTION
+  const {user} = useAuth0();
+  const [updateCollection, setUpdateCollection] = useState([]);
+  const addNewCard = async (e) => {
+    e.preventDefault();
+    console.log(updateCollection);
+    //POST request that send card data to user_Collection
+    await fetch("/user_collection", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+         //sending card object inside of the card key 
+      body: JSON.stringify({card, sub:user.sub}),
+    });
+    console.log(card, "this is card");
+  };
 
   return (
-    <div className="card">
-      <div className="card-horizontal">
-        <div className="img-square-wrapper">
-          {card.imageUrl && (
-            <img src={card.imageUrl} alt="image" className="card-img" />
-          )}
+    <div>
+    <MessageCard
+      heading={card.name}
+      paragraph={
+        <div>
+          <b>Mana Cost:</b>{card.manaCost}
+          <br></br>
+          <br></br>
+          <b>Flavor Text:</b> {card.text}
+          <br></br>
+          <br></br>
+          <b>Converted Mana Cost:</b> {card.cmc}
+          <br></br>
+          {/* <b>legalities:</b> {JSON.stringify(card.legalities)} */}
         </div>
-        <div className="card-body">
-          <h2 className="card-title">{card.name}</h2>
-          <p className="card-text">
-            <b>Mana Cost:</b> {JSON.stringify(card.manaCost)}
-            <br></br>
-            <br></br>
-            <b>Flavor Text:</b> {JSON.stringify(card.originalText)}
-            <br></br>
-            <br></br>
-            <b>Converted Mana Cost:</b> ${JSON.stringify(card.cmc)}
-          </p>
-        </div>
-      </div>
-      <div className="card-footer w-100 text-muted">
-        <p>
-          <b>legalities:</b> {JSON.stringify(card.legalities)}
-        </p>
-        <button className="card-add-button"> + My Collection </button>
-      </div>
-    </div>
+      }
+      buttonLabel="+ My Collection"
+      onClick={(e) => addNewCard(e) && alert('Added to Collection')}
+      //onClick={()=>alert('ADDED')}
+      image={{
+        src:card.imageUrl, 
+        layout: IMAGE_LAYOUT.trailing,
+        ariaLabel: 'MTG Card image',
+      }}
+      //overrides={{Root: {style: {marginBottom: '30px'}}}}
+      overrides={{
+        Image: {
+          style: { height: "310px", width: "250px" }
+        }}}
+    />
+  </div>
   );
 };
 
 export default DisplayCard;
-
-/*I know i need to take individual card data and pass if from displatcard to collection
-I think i can assign the prop value to each card and have that data post to a table in the back.
-im going to start by looking into tutorials on how to save "favorites" because the concepts 
-are similar*/

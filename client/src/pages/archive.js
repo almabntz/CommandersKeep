@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/searchBar";
-import DisplayCard from "../components/displayCard"; 
-//import CardData from "../components/default-cards2.json"
+import DisplayCard from "../components/displayCard";
 
-/* 
-*                           Parent: Archive 
-*   Parent has access to these props placeholder, data, onChange, card
-*
-*    Child: SeachBar                     Child: DisplayCard
-*  onChange prop passed from parent   Card prop passed from parent
-*/
+/*
+ *                           Parent: Archive
+ *   Parent has access to these props placeholder, data, onChange, card
+ *
+ *    Child: SeachBar                     Child: DisplayCard
+ *  onChange prop passed from parent   Card prop passed from parent
+ */
 
-
-
-const Archive = ({}) => {
+const Archive = () => {
   const [filteredAPIData, setfilteredAPIData] = useState([]); //useState for data receive from search bar
   const [searchTerm, setSearchTerm] = useState(""); //useState for key search term
 
@@ -29,7 +26,7 @@ const Archive = ({}) => {
     console.log(searchResults.cards);
     setfilteredAPIData(searchResults.cards);
   };
-  
+
   //logic that will send data to child, searchbar
   const handleClick = (word) => {
     //search term from search bar onchange
@@ -46,11 +43,7 @@ const Archive = ({}) => {
           return res.json();
         })
         .then((result) => {
-          console.log(
-            searchTerm,
-            result,
-
-          );
+          console.log(searchTerm, result);
           setfilteredAPIData(result.cards);
         })
         .catch((e) => {
@@ -60,18 +53,34 @@ const Archive = ({}) => {
   }, [searchTerm]);
 
   return (
-    <div>
+    <div className="page-msg">
+      <h1>Greetings, Planeswalker!</h1>
+      <h2>
+        Welcome to Commanders Keep card archive. Here you can browse
+        all cards exclusively by name. 
+        <br></br>
+        Please make any selections necessary
+        to update your collection, happy archiving!
+      </h2>
       <div className="searchBar">
+        <div></div>
         <SearchBar
           placeholder="Enter a Card Name..."
           data={filteredAPIData}
           onChange={handleClick} //sends data to the child component Searchbar
         />
       </div>
-      <h1>This is where full list of cards can be browsed</h1>
-      {filteredAPIData.map((i) => (
-        <DisplayCard card={i} />
-      ))}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gridRowGap: "20px",
+        }}
+      >
+        {filteredAPIData.map((i, index) => (
+          <DisplayCard key={index} card={i} />
+        ))}
+      </div>
     </div>
   );
 };
