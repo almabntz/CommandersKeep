@@ -40,13 +40,9 @@ async function getUserIdFromSub(sub) {
     sub,
   ]);
   console.log(result);
- // return result[0].user_id;
+  return result[0].user_id;
 }
 
-//NEW CODE---------------------------
-app.get('/', (req, res) => {
-  res.sendStatus(200)
-})
 
 //GET from user_collection
 app.get("/user_collection", async function (req, res, next) {
@@ -170,7 +166,6 @@ app.post("/api/users", cors(), async (req, res) => {
   if (resultsEmail.length > 0) {
     console.log(`Welcome back, Planeswalker ${resultsEmail.firstname} !`);
     res.json({ user_id: resultsEmail[0].id }); //current or new user is found
-    res.send({ user_id: resultsEmail[0].id }); //HOOKS TEST
   } else {
     //Values that are being inserted into table if new user
     const query =
