@@ -61,11 +61,9 @@ Search Suggestions:
 
 ## Installation
 
-First, you will need an ```bash
-  git clone https://github.com/almabntz/CommandersKeep.git
-``` API key. 
+First, you will need an [Auth0](https://auth0.com//) API key. 
 
-Clone my Commanders Keep repository
+Next, Clone my Commanders Keep repository
 
 ```bash
   git clone https://github.com/almabntz/CommandersKeep.git
