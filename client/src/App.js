@@ -1,5 +1,4 @@
 import "./App.css";
-
 //Nav Bar Code
 import { useState } from "react";
 import NavBar from "./components/navBar";
@@ -22,10 +21,7 @@ const engine = new Styletron();
 
 function App() {
   const [view, setView] = useState("myCollection");
-  //auth0
   const { isLoading, user } = useAuth0();
-  
-  // console.log(user);
 
   if (isLoading) {
     return <Loading />;
@@ -38,9 +34,9 @@ function App() {
           {!user ? (
             <div className="landing-page-container">
               <div className="log-in">
-             <img className="logo" src={logo2} />
-             <h1>Greetings, Planeswalker</h1>
-              <Auth0NavBar />
+                <img className="logo" src={logo2} />
+                <h1>Greetings, Planeswalker</h1>
+                <Auth0NavBar />
               </div>
             </div>
           ) : (
@@ -58,4 +54,3 @@ function App() {
 }
 
 export default App;
-//<video src={anilogo} autoplay="true" >

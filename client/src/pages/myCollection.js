@@ -22,7 +22,7 @@ const Collection = ({ sendToCollection, currentCollection }) => {
     getCollection();
   }, [myCollection]);
 
-  //Delete handle logic
+  //Delete handle logic, removes cards from my collection
   const deleteCard = (deleteCardId) => {
     return fetch(`user_collection/${deleteCardId}`, {
       method: "DELETE",
@@ -35,10 +35,10 @@ const Collection = ({ sendToCollection, currentCollection }) => {
 
   return (
     <div className="page-msg">
-           <h1>Collection</h1>
+      <h1>Collection</h1>
       <h2>
-        Please make any selections necessary
-        to update your collection, or send cards to your deck.
+        Please make any selections necessary to update your collection, or send
+        cards to your deck.
       </h2>
       <div
         style={{

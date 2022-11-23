@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import DeckDisplayCard from "../components/deckDisplayCard";
 import { useAuth0 } from "@auth0/auth0-react";
-
+/*
+ *   Parent: Deck
+ *    props displayDeck and deleteDeck is being passed from
+ *    deck to deckDisplayCard
+ *
+ *    Child: deckDisplayCard
+ *
+ */
 const Decks = () => {
   const [myDeck, setMyDeck] = useState([]); //this will hold cards within the deck
   const { user } = useAuth0();

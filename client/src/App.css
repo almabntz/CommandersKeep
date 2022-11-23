@@ -1,30 +1,27 @@
 .landing-page-container {
-text-align: center;
-background-image: url("./components/landing.jpg");
-position: absolute;
-top: 0px; 
-bottom: 0px; 
-width: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+  text-align: center;
+  background-image: url("./components/landing.jpg");
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /*This is staking my links next to each other and 
 keeping them from being on top of each other*/
-.navbar-container{
-  overflow: hidden; 
-border-image-repeat: stretch;
-/* background-image: url("./components/logo.png"); */
-object-fit:scale-down;
- padding-top: 200px; 
-object-position: 30px 10%; 
-/* /* width: 940px; */
-  
+.navbar-container {
+  overflow: hidden;
+  border-image-repeat: stretch;
+  object-fit: scale-down;
+  padding-top: 200px;
+  object-position: 30px 10%;
 }
 
-.user-wrap{
-  float:left;
+.user-wrap {
+  float: left;
 }
 
 /*This is controling my text that links me to diff pages
@@ -33,42 +30,35 @@ its centering my links and spacing them from each other*/
   float: left;
   padding-right: 10px;
   padding-left: 100px;
-
 }
 
-.logo-wrap{
- text-align: left;
- width: 100px;
+.logo-wrap {
+  text-align: left;
+  width: 100px;
 
- font-family:'Lucida Sans', 'Lucida Sans Regular';
- /* background-color: blue; */
- margin-left: 100px;
- /* margin-top: 100px; */
+  font-family: "Lucida Sans", "Lucida Sans Regular";
+  margin-left: 100px;
 }
-
-
 
 /*this is wrapped around my navbar div
 its creating my nav bars box*/
 .wrap {
-background-image: url("./components/banner.jpeg");
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
+  background-image: url("./components/banner.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .searchBar {
-float:right;
-place-items: center;
-/* float:left; */
-padding-right: 100px;
-padding-left: 20px;
+  float: right;
+  place-items: center;
+  padding-right: 100px;
+  padding-left: 20px;
 }
 
 .display-card {
   background-color: aqua;
 }
-
 
 .nav-links {
   overflow: hidden;
@@ -76,7 +66,7 @@ padding-left: 20px;
 }
 
 /* Navbar links */
-.nav-links  h2 {
+.nav-links h2 {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -88,32 +78,31 @@ padding-left: 20px;
 .nav-links h2:hover {
   background-color: #ddd;
   color: black;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.log-out{
-  float:right;
+.log-out {
+  float: right;
   padding-right: 100px;
 }
 
-.log-in{
-  color:azure;
-  font-family:'Lucida Sans', 'Lucida Sans Regular';
-   font-size: xx-large;
-   text-shadow: 2px 2px #4c4a4a;
+.log-in {
+  color: azure;
+  font-family: "Lucida Sans", "Lucida Sans Regular";
+  font-size: xx-large;
+  text-shadow: 2px 2px #4c4a4a;
   /* padding-top: 35%; */
 }
 
-.auth-login{
-  cursor:pointer;
+.auth-login {
+  cursor: pointer;
   padding: 14px 16px;
   background-color: #333;
   position: absolute;
-  margin-left: 50% ;
- 
+  margin-left: 50%;
 }
 
-.page-msg{
+.page-msg {
   margin-left: 25px;
   margin-right: 25px;
 }
