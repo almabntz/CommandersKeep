@@ -35,12 +35,10 @@ const DisplayCard = ({ card }) => {
           <br></br>
           <b>Converted Mana Cost:</b> {card.cmc}
           <br></br>
-          {/* <b>legalities:</b> {JSON.stringify(card.legalities)} */}
         </div>
       }
       buttonLabel="+ My Collection"
       onClick={(e) => addNewCard(e) && alert('Added to Collection')}
-      //onClick={()=>alert('ADDED')}
       image={{
         src:card.imageUrl, 
         layout: IMAGE_LAYOUT.trailing,

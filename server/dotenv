@@ -1,0 +1,5 @@
+DATABASE_URL = "**********************"
+SECRET = "**************************"
+BASEURL = "http://localhost:****"
+CLIENTID = "**************************"
+ISSUER = "dev-*******************.us.auth0.com"
